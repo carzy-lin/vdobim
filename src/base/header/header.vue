@@ -1,8 +1,16 @@
 <template>
   <div class="header item-header  _cover-top">
-    <span class="left icon return" @click="back(projectDetails)">返回</span>
-    <div class="title top-title _effect" :class="{'_effect--30':decline}"><span>ddsf</span></div>
-    <span class="right icon search">搜索</span>
+    <div class="top-back">
+      <span class="left icon return" @click="back()">返回</span>
+    </div>
+    <div class="title top-title _effect" :class="{'_effect--30':decline}">
+      <slot name="title">
+        <span v-text="title"></span>
+      </slot>
+    </div>
+    <div class="top-right">
+      <span class="right icon search">搜索</span>
+    </div>
   </div>
 </template>
 
@@ -18,7 +26,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: ''
+      default: 'vdobim'
     }
   },
   components: {
@@ -56,11 +64,11 @@ export default {
     width: 2rem;
     font-size: $font-size-large;
   }
-  .left {
+  .top-back {
     position: absolute;
     left: .15rem;
   }
-  .right {
+  .top-right {
     position: absolute;
     right: .15rem;
   }
