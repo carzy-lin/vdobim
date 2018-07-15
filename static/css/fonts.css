@@ -1,0 +1,325 @@
+@font-face {
+  font-family: 'vm-icon';
+  src:  url('../fonts/vm-icon.eot?55maso');
+  src:  url('../fonts/vm-icon.eot?55maso#iefix') format('embedded-opentype'),
+    url('../fonts/vm-icon.ttf?55maso') format('truetype'),
+    url('../fonts/vm-icon.woff?55maso') format('woff'),
+    url('../fonts/vm-icon.svg?55maso#vm-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'vm-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-comment:before {
+  content: "\e900";
+  color: #999;
+}
+.icon-collection-red:before {
+  content: "\e901";
+  color: #f00;
+}
+.icon-collection:before {
+  content: "\e902";
+  color: #999;
+}
+.icon-return:before {
+  content: "\e903";
+  color: #999;
+}
+.icon-return-white:before {
+  content: "\e903";
+  color: #fff;
+  font-size: 22px;
+}
+.icon-筛选:before {
+  content: "\e904";
+  color: #999;
+}
+.icon-search:before {
+  content: "\e905";
+  color: #999;
+}
+.icon-search-white:before {
+  content: "\e905";
+  color: #fff;
+  font-size: 22px;
+}
+.icon-show:before {
+  content: "\e906";
+  color: #999;
+}
+.icon-radio-unchecked:before {
+  content: "\e907";
+  color: #999;
+}
+.icon-radio-checked:before {
+  content: "\e908";
+  color: #999;
+}
+.icon-sort:before {
+  content: "\e909";
+  color: #999;
+}
+.icon-play:before {
+  content: "\e90a";
+  color: #bfbfbf;
+}
+.icon-add:before {
+  content: "\e90b";
+  color: #999;
+}
+.icon-监控:before {
+  content: "\e90c";
+  color: #d81e06;
+}
+.icon-menu:before {
+  content: "\e90d";
+  color: #fff;
+}
+.icon-share-active:before {
+  content: "\e90e";
+  color: #fff;
+}
+.icon-plan:before {
+  content: "\e90f";
+  color: #fff;
+}
+.icon-drawing:before {
+  content: "\e910";
+  color: #fff;
+}
+.icon-scene:before {
+  content: "\e911";
+  color: #fff;
+}
+.icon-report-form:before {
+  content: "\e912";
+  color: #fff;
+}
+.icon-survey:before {
+  content: "\e913";
+  color: #fff;
+}
+.icon-model:before {
+  content: "\e914";
+  color: #fff;
+}
+.icon-setup:before {
+  content: "\e915";
+  color: #fff;
+}
+.icon-file:before {
+  content: "\e916";
+  color: #fff;
+}
+.icon-problem-active:before {
+  content: "\e917";
+  color: #fff;
+}
+.icon-关闭2-(1):before {
+  content: "\e918";
+  color: #ccc;
+}
+.icon-delete-all:before {
+  content: "\e919";
+  color: #999;
+}
+.icon-time:before {
+  content: "\e91a";
+  color: #244e78;
+}
+.icon-filter:before {
+  content: "\e91b";
+  color: #999;
+}
+.icon-open:before {
+  content: "\e91c";
+  color: #999;
+}
+.icon-home:before {
+  content: "\e91d";
+  color: #fff;
+}
+.icon-display:before {
+  content: "\e91e";
+  color: #999;
+}
+.icon-phone-gray:before {
+  content: "\e91f";
+  color: #999;
+}
+.icon-verification:before {
+  content: "\e920";
+  color: #999;
+}
+.icon-verification-green:before {
+  content: "\e921";
+  color: #43a143;
+}
+.icon-排序2:before {
+  content: "\e922";
+  color: #999;
+}
+.icon-search-white:before {
+  content: "\e923";
+  color: #fff;
+}
+.icon-头像:before {
+  content: "\e924";
+  color: #999;
+}
+.icon-my-password:before {
+  content: "\e925";
+  color: #1296db;
+}
+.icon-my-problem:before {
+  content: "\e926";
+  color: #ff8f00;
+}
+.icon-return-gray:before {
+  content: "\e927";
+  color: #999;
+}
+.icon-my-news:before {
+  content: "\e928";
+  color: #89d043;
+}
+.icon-分享2:before {
+  content: "\e929";
+  color: #999;
+}
+.icon-搜索灰色:before {
+  content: "\e92a";
+  color: #999;
+}
+.icon-news:before {
+  content: "\e92b";
+  color: #999;
+}
+.icon-笔:before {
+  content: "\e92c";
+  color: #fff;
+}
+.icon-方框:before {
+  content: "\e92d";
+  color: #fff;
+}
+.icon-关闭:before {
+  content: "\e92e";
+  color: #fff;
+}
+.icon-确定:before {
+  content: "\e92f";
+  color: #fff;
+}
+.icon-圆形:before {
+  content: "\e930";
+  color: #fff;
+}
+.icon-字:before {
+  content: "\e931";
+  color: #fff;
+}
+.icon-transformation:before {
+  content: "\e932";
+  color: #999;
+}
+.icon-加号12:before {
+  content: "\e933";
+  color: #999;
+}
+.icon-1:before {
+  content: "\e934";
+  color: #fff;
+}
+.icon-2:before {
+  content: "\e935";
+  color: #fff;
+}
+.icon-3:before {
+  content: "\e936";
+  color: #fff;
+}
+.icon-4:before {
+  content: "\e937";
+  color: #fff;
+}
+.icon-5:before {
+  content: "\e938";
+  color: #fff;
+}
+.icon-7:before {
+  content: "\e939";
+  color: #fff;
+}
+.icon-8:before {
+  content: "\e93a";
+  color: #fff;
+}
+.icon-more:before {
+  content: "\e93b";
+  color: #999;
+}
+.icon-模型2:before {
+  content: "\e93c";
+  color: #fff;
+}
+.icon-edit:before {
+  content: "\e93d";
+  color: #999;
+}
+.icon-消息-fill:before {
+  content: "\e93e";
+  color: #244e78;
+}
+.icon-项目:before {
+  content: "\e93f";
+  color: #244e78;
+}
+.icon-project:before {
+  content: "\e940";
+  color: #999;
+}
+.icon-my:before {
+  content: "\e941";
+  color: #999;
+}
+.icon-我的-fill:before {
+  content: "\e942";
+  color: #244e78;
+}
+.icon-problem:before {
+  content: "\e943";
+  color: #999;
+}
+.icon-问号-fill:before {
+  content: "\e944";
+  color: #244e78;
+}
+.icon-mobile-phone:before {
+  content: "\e945";
+  color: #fff;
+}
+.icon-password:before {
+  content: "\e946";
+  color: #fff;
+}
+
+
+.icon-active:before {
+  color: rgb(36, 78, 120);
+}

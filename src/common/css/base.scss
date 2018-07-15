@@ -1,0 +1,252 @@
+@import './variable.scss';
+
+html {
+  font-size: 100px;
+  font-size: 26.66666667vw;
+}
+
+body {
+  line-height: 1;
+  background-color: #fff;
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback';
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  color: $color-text;
+  font-size: .14rem;
+}
+
+.fr {
+    float: right;
+}
+.fl {
+    float: left;
+}
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+.vm-pd-15 {
+  padding: 0 .15rem;
+}
+
+a:hover{text-decoration:underline;}
+
+.text-execeeded{
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-execeeded-2 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -moz-box-orient: vertical;
+  -moz-line-clamp: 2;
+  -ms-box-orient: vertical;
+  -ms-line-clamp: 2;
+  -moz-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.frame-1px::after,.frame-top-1px::before{
+  display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    content: ' ';
+}
+.frame-1px::after{
+    bottom: 0;
+    border-bottom: 1px solid $color-gray;
+}
+
+.frame-top-1px::before{
+    top: 0;
+    bottom: 0;
+    border-top: 1px solid $color-gray;
+}
+
+.icon-return:before {
+  font-size: $font-size-large-x;
+}
+
+.icon-font {
+  font-size: .22rem;
+}
+
+.vm-more-icon {
+  font-size: .18rem;
+}
+
+.vm-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+.green {
+  background: $color-green;
+}
+
+.orange {
+  background: $color-orange;
+}
+.red {
+  background: $color-red;
+}
+
+.blue {
+  background: $color-blue;
+}
+
+/*动画跳转*/
+
+/*
+    router-view -> transition="cover"
+    cover开头的 是router-view过渡切换是公用的样式
+    _cover-* 是会被cover 影响的元素
+*/
+
+.cover-transition {
+    opacity: 1;
+    transition: .35s opacity ease;
+}
+
+.cover-enter ._cover-top,
+.cover-leave ._cover-top {
+    opacity: 0;
+}
+
+.cover-enter,.cover-leave {
+    opacity: .98;
+}
+
+._effect {
+    opacity: 1;
+    transition: .3s all ease;
+}
+
+._cover-top .top-title {
+    transition: .2s all ease;
+}
+
+.cover-enter ._cover-top,
+.cover-leave ._cover-top {
+    opacity: 0;
+}
+
+.cover-enter ._cover-top .top-title,
+.cover-leave ._cover-top .top-title {
+    opacity: 0;
+    transform: translate3d(50%, 0, 0);
+}
+
+.cover-enter ._cover-content {
+    transform: translate3d(80%, 0, 0);
+}
+
+.cover-leave ._cover-content {
+    transition: .25s all ease;
+    transform: translate3d(100%, 0, 0);
+}
+
+._effect--30 {
+    transform: translate3d(-30%, 0, 0);
+}
+
+._effect--50 {
+    opacity: 0;
+    transform: translate3d(-50%, 0, 0);
+}
+
+
+
+.header {
+  transition: .2s all ease;
+  //transition: .22s all ease;
+}
+.slide-enter {
+   opacity: 0;
+   transform: translate3d(-30%, 0, 0);
+}
+.slide-enter-active{
+  transition: opacity 0.3s;
+
+ 
+}
+.slide-leave-to {
+ opacity: 0;
+
+}
+.slide-leave-active {
+  transition: opacity 0.3s;
+  transform: translate3d(-30%, 0, 0);
+}
+/*动画跳转*/
+
+
+
+
+
+.main {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: .44rem;
+  background-color: #fff;
+  overflow: hidden;
+  transition: .2s all ease-in-out;
+  opacity: 1;
+}
+
+
+
+/*login.vue*/
+
+@media (min-width: 320px ) and (max-width: 360px){
+
+  #app {
+    .myProject {
+      .myProject-main {
+        .myProject-item {
+            width: 17.5%;
+            margin-right: 10.95%;
+        }
+        .myProject-item-bot {
+            margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+
+
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5) {
+.frame-1px::after,.frame-top-1px::before{
+    -webkit-transform: scaleY(0.7);
+    transform: scaleY(0.7);
+
+ }
+}
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2) {
+.frame-1px::after,.frame-top-1px::before{
+  -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+ }
+}

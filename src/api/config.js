@@ -1,0 +1,1 @@
+export const SUCCESS_OK = '0000'
