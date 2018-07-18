@@ -1,5 +1,5 @@
 <template>
-  <div class="header item-header  _cover-top">
+  <div class="header item-header">
     <div class="top-back">
       <span class="left icon return" @click="back()">返回</span>
     </div>

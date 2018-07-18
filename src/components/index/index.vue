@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="project" :class="{'_effect--30':decline}">
     <div class="project-header frame-1px header">
       <div class="logo"><span class="v">V</span><span>DOBIM</span></div>
@@ -30,8 +31,9 @@
           <loading></loading>
       </div>
     </div>
-    <router-view transition="cover">></router-view>
   </div>
+  <router-view transition="cover">></router-view>
+</div>
 </template>
 
 <script>

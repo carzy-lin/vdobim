@@ -56,6 +56,9 @@ export default {
   },
   getProject(params) {
     return fetch(`${base}/project/projectList`, params)
+  },
+  getAI(params) {
+    return fetch(`${base}/news/newsList`, params)
   }
 }
 

@@ -5,7 +5,8 @@ import * as types from '../types'
 
 const state = {
   projectList: {},
-  projectDetails: {}
+  projectDetails: {},
+  AiDetails: {},
 }
 
 
@@ -21,7 +22,8 @@ const actions = {
 
 const getters = {
     projectList: state => state.projectList,
-    projectDetails: state => state.projectDetails
+    projectDetails: state => state.projectDetails,
+    AiDetails: state => state.AiDetails
 }
 
 const mutations = {
@@ -30,7 +32,10 @@ const mutations = {
   },
   [types.GET_PROJECT_DETAILS](state,res) {
     state.projectDetails = res
-  }
+  },
+  [types.GET_AI_DETAILS](state,res) {
+    state.AiDetails = res
+  },
 }
 
 export default {
