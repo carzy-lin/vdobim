@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="AI-list">
+    <div class="AI-list _effect _cover-content" :class="{'_effect--30':decline}">
       <div v-for="(item,key) in AI"  :key="key" class="Ai-item frame-1px" @click="AiDetails(item)">
         <div class="Ai-item-left">
           <div class="Ai-item-title text-execeeded-2">
@@ -16,7 +16,6 @@
         </div>
       </div>
     </div>
-    <router-view></router-view>
 </div>
 </template>
 
@@ -26,6 +25,11 @@ import {formatDate} from 'common/js/timestamps';
 /*:class="[{'frame-1px': index != 1 },{'Ai-item-bot': index === 1}]"*/
 
 export default {
+  data () {
+    return {
+      decline: false
+    }
+  },
   props: {
     AI: {
        type: Array
@@ -45,8 +49,7 @@ export default {
   methods: {
     AiDetails (item) {
       this.$router.push({
-        //path: '/index/${projectDetails.project_id}/AI/AiDetails'
-        path: '/index/${projectDetails.project_id}/${item.news_id}'
+        path: '/index/${projectDetails.project_id}/AI/${item.news_id}'
       })
       this.setAiDetails(item)
     },
@@ -63,7 +66,7 @@ export default {
 @import "~common/css/variable";
 
 .AI-list {
-  padding: 0 0.1rem .15rem;
+  padding: 0 0.1rem 0;
   position: relative;
   .Ai-item {
     display: flex;
@@ -95,6 +98,9 @@ export default {
         height: .7rem;
       }
     }
+  }
+  .Ai-item:last-child::after {
+    border-bottom: 0;
   }
   .Ai-item-bot {
     padding: .14rem 0 0 0;

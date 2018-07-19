@@ -1,15 +1,17 @@
 <template>
-  <div class="header item-header">
+  <div class="header item-header _cover-top">
     <div class="top-back">
       <span class="left icon return" @click="back()">返回</span>
     </div>
-    <div class="title top-title _effect" :class="{'_effect--30':decline}">
-      <slot name="title">
-        <span v-text="title"></span>
-      </slot>
-    </div>
     <div class="top-right">
       <span class="right icon search">搜索</span>
+    </div>
+    <div class="title top-title _effect" :class="{'_effect--50':decline}">
+      <slot name="center">
+        <p>
+          <span v-text="title"></span>
+        </p>
+      </slot>
     </div>
   </div>
 </template>
@@ -56,7 +58,9 @@ export default {
   justify-content: center;
   align-items: center;
   padding: $pd-lf;
+  //background: linear-gradient(180deg,#303036,#3c3b40);
   box-shadow: 0px 0px 1px $color-c;
+  //transform: translateZ(0);
   .title {
     display: flex;
     align-items: center;

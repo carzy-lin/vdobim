@@ -1,11 +1,11 @@
 <template>
 <div>
-  <div class="project" :class="{'_effect--30':decline}">
-    <div class="project-header frame-1px header">
+  <div class="project">
+    <div class="project-header frame-1px header _effect" :class="{'_effect--50':decline}">
       <div class="logo"><span class="v">V</span><span>DOBIM</span></div>
       <span class="icon icon-search"></span>
     </div>
-    <div class="project-main _effect">
+    <div class="project-main _effect" :class="{'_effect--30':decline}">
       <scroll ref="scroll" class="project-main-box" :pullup="pullup"  @scrollToEnd="loadMore" :data="projectList">
         <div>
          <div class="project-list">
@@ -32,7 +32,9 @@
       </div>
     </div>
   </div>
-  <router-view transition="cover">></router-view>
+  <transition :name="cover">
+    <router-view class="cover-transition"></router-view>
+  </transition>
 </div>
 </template>
 
@@ -54,6 +56,7 @@ export default {
       loadingEndData: false,
       loadingImg: false,
       decline: false,
+      cover: "cover-right",
       page: 1
     }
   },
@@ -121,7 +124,30 @@ export default {
     ])
   },
   created(){
-       this.getData();
+    this.getData();
+  },
+  watch: {
+    $route(to, from) {
+        //如果to的索引值为0，不添加任何动画；如果to索引大于from索引,判断为前进状态,反之则为后退状态
+        if(to.meta.index > 0){
+            if( to.meta.index < from.meta.index){
+                this.transitionName = 'cover-right';
+                this.decline = false
+                console.log(1)
+            }else{
+                this.transitionName = 'cover-left';
+                this.decline = true
+                console.log(2)
+            }
+            if(from.meta.index == 4 || from.meta.index == 3){
+               this.decline = true
+            }
+        }else if(to.meta.index == 0 && from.meta.index > 0){
+            this.transitionName = 'cover-left';
+            this.decline = true
+            console.log(3)
+        }
+    }
   }
 }  
 </script>
@@ -156,6 +182,7 @@ export default {
   right: 0;
   bottom: .44rem;
   overflow: hidden;
+  opacity: 1;
   .project-main-box {
     height: 100%;
     overflow: hidden;

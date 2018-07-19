@@ -1,7 +1,7 @@
 <template>
-    <div class="AI-details main-fill">
+    <div class="AI-details main-fixed">
       <div class="return"><span @click="back()">返回</span></div>
-      <div class="AI-details-main">
+      <div class="AI-details-main _effect _cover-content" :class="{'_effect--30':decline}">
         <Scroll ref="scroll" class="vm-scroll">
           <div class="AI-details-main-pd">
             <div class="AI-details-top">
@@ -32,6 +32,11 @@ import Scroll from 'base/scroll/scroll'
 import VmHeader from 'base/header/header'
 /*:class="[{'frame-1px': index != 1 },{'Ai-item-bot': index === 1}]"*/
 export default {
+  data () {
+    return {
+      decline: false
+    }
+  },
   components: {
     VmHeader,
     Scroll

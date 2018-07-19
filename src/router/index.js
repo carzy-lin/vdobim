@@ -40,20 +40,41 @@ export default new Router({
         {
             path: '/index',
             component: Index,
+            meta: {
+              index: 1
+            },
             children: [
               {
                 path: ':id',
                 name: ':id',
                 component: Home,
+                meta: {
+                  index: 2
+                },
                 children: [
                   {
                     path: 'AI',
                     component: AiFg,
+                    meta: {
+                      index: 3
+                    },
+                    children: [
+                      {
+                         path: ':id',
+                         component: AiDetails,
+                         meta: {
+                            index: 4
+                         }
+                      }
+                    ]
                   },
-                  {
+                  /*{
                     path: ':id',
-                    component: AiDetails
-                  }
+                    component: AiDetails,
+                    meta: {
+                      index: 4
+                    }
+                  }*/
                 ]
               }
             ]

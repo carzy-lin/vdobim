@@ -1,13 +1,16 @@
 <template>
     <div class="AI-box main-fill">
       <vm-header :title="title"></vm-header>
-      <div class="main-44 ">
+      <div class="main-44 _effect _cover-content" :class="{'_effect--30':decline}">
         <scroll ref="scroll" class="vm-scroll" :data="AI">
           <div>
             <AI-list :AI="AI"></AI-list>
           </div>
         </scroll>
       </div>
+      <transition :name="cover">
+        <router-view></router-view>
+      </transition>
     </div>
 </template>
 
@@ -21,7 +24,8 @@ import {formatDate} from 'common/js/timestamps';
 export default {
   data () {
     return {
-      title: "AI秘书"
+      title: "AI秘书",
+      cover: "cover-right"
     }
   },
   components: {
@@ -41,6 +45,20 @@ export default {
       }
   },
   methods: {
+  },
+  watch: {
+    $route(to, from, next) {
+        //如果to的索引值为0，不添加任何动画；如果to索引大于from索引,判断为前进状态,反之则为后退状态
+        if(to.meta.index > 2){
+          if( to.meta.index < from.meta.index){
+                this.transitionName = 'cover-right';
+                this.decline = false
+            }else{
+                this.transitionName = 'cover-left';
+                this.decline = true
+          }
+        }
+    }
   }
 }  
 </script>

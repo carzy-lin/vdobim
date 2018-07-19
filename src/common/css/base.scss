@@ -121,12 +121,95 @@ a:hover { text-decoration: underline; }
 */
 
 
-
-
-.header {
-  transition: .2s all ease;
-  //transition: .22s all ease;
+.cover-transition {
+  opacity: 1;
+  transition: .35s opacity ease;
 }
+
+.cover-enter,
+.cover-leave {
+    opacity: 0;
+}
+
+._cover-top .top-title {
+    transition: .2s all ease;
+}
+
+._cover-top {
+  transition: all .22s ease;
+  opacity: 1;
+}
+
+
+
+
+.cover-right-enter-active,
+.cover-right-leave-active,
+.cover-left-enter-active,
+.cover-left-leave-active {
+    will-change: transform;
+    transition: .35s all;
+    width:100%;
+    opacity: 1;
+}
+
+.cover-right-leave-active {
+    transform: translateX(100%);
+}
+
+.cover-left-leave-active {
+    transform: translateX(-100%);
+}
+
+
+
+._effect {
+    opacity: 1;
+    transition: .3s all ease;
+}
+
+._effect--30 {
+    transform: translate3d(-30%, 0, 0);
+}
+
+._effect--50 {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.cover-right-enter,
+.cover-left-enter {
+    opacity: .98;
+}
+
+.cover-right-enter ._cover-top,
+.cover-left-enter ._cover-top {
+    opacity: 0;
+}
+
+._cover-top .top-title {
+    transition: .3s all ease;
+}
+
+.cover-right-enter ._cover-top .top-title,
+.cover-left-enter ._cover-top .top-title {
+    opacity: 0;
+    transform: translate3d(50%, 0, 0);
+}
+
+.cover-right-enter ._cover-content {
+    transform: translate3d(50%, 0, 0);
+}
+
+.cover-left-enter ._cover-content {
+    transition: .45s all ease;
+    transform: translate3d(100%, 0, 0);
+}
+
+
+
+
+
 .slide-enter {
    opacity: 0;
    transform: translate3d(-30%, 0, 0);
@@ -159,7 +242,7 @@ a:hover { text-decoration: underline; }
   bottom: .45rem;
   background-color: #fff;
   overflow: hidden;
-  transition: .2s all ease-in-out;
+  transition: .3.5s all ease-in-out;
   opacity: 1;
 }
 
@@ -172,7 +255,7 @@ a:hover { text-decoration: underline; }
   bottom: 0;
   background-color: #fff;
   overflow: hidden;
-  transition: .2s all ease-in-out;
+  transition: .3s all ease-in-out;
   opacity: 1;
 }
 
@@ -185,7 +268,20 @@ a:hover { text-decoration: underline; }
   bottom: 0;
   background-color: #fff;
   overflow: hidden;
-  transition: .2s all ease-in-out;
+  transition: .3s all ease-in-out;
+  opacity: 1;
+}
+
+.main-fixed {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  overflow: hidden;
+  transition: .3s all ease-in-out;
   opacity: 1;
 }
 
