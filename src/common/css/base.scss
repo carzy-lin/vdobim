@@ -97,6 +97,11 @@ a:hover { text-decoration: underline; }
   overflow: hidden;
 }
 
+.vm-scroll-y {
+  width: 100%;
+  overflow: hidden;
+}
+
 .green {
   background: $color-green;
 }

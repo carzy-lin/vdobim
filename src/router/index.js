@@ -12,6 +12,10 @@ const Home = resolve => require(['@/components/home/home'], resolve)
 
 const AiFg = resolve => require(['@/components/AI/AI'], resolve)
 
+const overview = resolve => require(['@/components/overview/overview'], resolve)
+
+const basicInformation = resolve => require(['@/components/overview/basic-information/basic-information'], resolve)
+
 const AiDetails = resolve => require(['@/base/AI-list/AI-details/AI-details'], resolve)
 
 
@@ -68,13 +72,24 @@ export default new Router({
                       }
                     ]
                   },
-                  /*{
-                    path: ':id',
-                    component: AiDetails,
+                  {
+                    path: 'overview',
+                    name: 'overview',
+                    component: overview,
                     meta: {
-                      index: 4
-                    }
-                  }*/
+                      index: 3
+                    },
+                    children: [
+                      {
+                        path: 'basic-information',
+                        name: 'basic-information',
+                        component: basicInformation,
+                        meta: {
+                          index: 4
+                        },
+                      }
+                    ]
+                  }
                 ]
               }
             ]

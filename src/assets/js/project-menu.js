@@ -108,3 +108,26 @@ export const MyMenu = [
     "img": "../../static/img/projectMenu/vm-home-collection.png"
   }
 ]
+
+export const overviewMenu = [
+  {
+    "title": "基本信息",
+    "url": "basic-information"
+  },
+  {
+    "title": "项目动态",
+    "url": "basic-information"
+  },
+  {
+    "title": "项目通知",
+    "url": "basic-information"
+  },
+  {
+    "title": "项目成员",
+    "url": "basic-information"
+  },
+  {
+    "title": "效果图",
+    "url": "basic-information"
+  }
+]

@@ -35,7 +35,7 @@ export default {
     bottom: 0;
     box-shadow: -1px 1px 3px #ccc;
     background: $color-white;
-    z-index: 9;
+    z-index: 999;
     .tab-item {
       flex: 1;
       padding: .05rem 0;

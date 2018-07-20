@@ -10,7 +10,7 @@
           <div class="home-box">
             <div class="home-menu">
               <div class="menu-item fl">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{name:'information',query:{title: '概况'}}">
+                <router-link  tag="div" class="tab-item menu-item-box" :to="{name:'basic-information',query:{title: '基本信息'}}">
                   <img src="./vm-home-1.png">
                 </router-link>
                 <span>概况</span>
