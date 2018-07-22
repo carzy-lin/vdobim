@@ -9,52 +9,11 @@
         <scroll ref="scroll" class="vm-scroll" :data="filterAI">
           <div class="home-box">
             <div class="home-menu">
-              <div class="menu-item fl">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{name:'basic-information',query:{title: '基本信息'}}">
-                  <img src="./vm-home-1.png">
+              <div class="menu-item fl" v-for="item in projectMenu">
+                <router-link  tag="div" class="tab-item menu-item-box" :to="{name: item.url,query:{title: item.title}}">
+                  <img :src="item.img">
                 </router-link>
-                <span>概况</span>
-              </div>
-              <div class="menu-item fl">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{name:'model-list',query:{title: '模型'}}">
-                  <img src="./vm-home-2.png">
-                </router-link>
-                <span>模型</span>
-              </div>
-              <div class="menu-item fl">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{path:'/index/${projectDetails.project_id}/information'}">
-                  <img src="./vm-home-3.png"> </router-link>
-                <span>计划</span>
-              </div>
-              <div class="menu-item fl">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{path:'/index/${projectDetails.project_id}/information'}">
-                  <img src="./vm-home-4.png">
-                </router-link>
-                <span>问题</span>
-              </div>
-              <div class="menu-item fl">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{path:'/index/${projectDetails.project_id}/information'}">
-                  <img src="./vm-home-5.png">
-                </router-link>
-                <span>图纸</span>
-              </div>
-              <div class="menu-item fl">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{path:'/index/${projectDetails.project_id}/information'}">
-                  <img src="./vm-home-6.png">
-                </router-link>
-                <span>文档</span>
-              </div>
-              <div class="menu-item fl">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{path:'/index/${projectDetails.project_id}/information'}">
-                  <img src="./vm-home-7.png">
-                </router-link>
-                <span>现场</span>
-              </div>
-              <div class="menu-item fl">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{path:'/index/${projectDetails.project_id}/information'}">
-                  <img src="./vm-home-11.png">
-                </router-link>
-                <span>更多</span>
+                <span>{{item.title}}</span>
               </div>
             </div>
             <div class="home-AI">
@@ -99,16 +58,41 @@ import Scroll from 'base/scroll/scroll'
 import {mapGetters,mapActions,mapMutations} from 'vuex'
 import api from '../../api/api'
 import {SUCCESS_OK} from '../../api/config'
-import {MyMenu} from 'assets/js/project-menu'
+import {MyMenu,projectMenu} from 'assets/js/project-menu'
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
+import 'swiper/dist/css/swiper.css';
 
 export default {
   data () {
     return {
        AIlist: [],
        MyMenu,
+       projectMenu,
        name,
        decline: false,
-       cover: "cover-right"
+       cover: "cover-right",
+       swiperOption: {
+          notNextTick: true,
+            autoplay: {
+            delay: 30000
+          },
+          speed: 1000,
+          loop: true,
+          pagination: {
+          el: '.swiper-pagination'
+          },
+          effect: 'fade',
+          fade: {
+           crossFade: false
+          },
+          scrollbarHide: true,
+          paginationClickable: true,
+          lazyLoading: true,
+          lazyLoadingInPrevNext: true,
+          lazyLoadingOnTransitionStart: false,
+          lazyLoadingInPrevNextAmount: 1,
+          calculateHeight: true
+       }
     }
   },
   components: {
@@ -152,16 +136,15 @@ export default {
         //如果to的索引值为0，不添加任何动画；如果to索引大于from索引,判断为前进状态,反之则为后退状态
         if(to.meta.index > 1){
             if( to.meta.index < from.meta.index){
-                this.transitionName = 'cover-right';
                 this.decline = false
             }else{
-                this.transitionName = 'cover-left';
                 this.decline = true
             }
             if(to.meta.index == 3 && from.meta.index == 4){
                 this.decline = true
             }
         }
+
     }
   }
 }  

@@ -25,6 +25,7 @@ export default {
   data () {
     return {
       title: "AI秘书",
+      decline: false,
       cover: "cover-right"
     }
   },
@@ -51,11 +52,11 @@ export default {
         //如果to的索引值为0，不添加任何动画；如果to索引大于from索引,判断为前进状态,反之则为后退状态
         if(to.meta.index > 2){
           if( to.meta.index < from.meta.index){
-                this.transitionName = 'cover-right';
                 this.decline = false
+                console.log(777)
             }else{
-                this.transitionName = 'cover-left';
                 this.decline = true
+                 console.log(787)
           }
         }
     }

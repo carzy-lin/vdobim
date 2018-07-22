@@ -59,6 +59,18 @@ export default {
   },
   getAI(params) {
     return fetch(`${base}/news/newsList`, params)
+  },
+  getProjectNotice(params) {
+    return fetch(`${base}/notice/projectNoticeList`, params)
+  },
+  getProjectMember(params) {
+    return fetch(`${base}/group/projectMemberList`, params)
+  },
+  getAction(params) {
+    return fetch(`${base}/action/getAction`, params)
+  },
+  getProjectEffectList(params) {
+    return fetch(`${base}/picture/pictureList`, params)
   }
 }
 

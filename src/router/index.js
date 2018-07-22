@@ -16,6 +16,18 @@ const overview = resolve => require(['@/components/overview/overview'], resolve)
 
 const basicInformation = resolve => require(['@/components/overview/basic-information/basic-information'], resolve)
 
+const dynamic = resolve => require(['@/components/overview/dynamic/dynamic'], resolve)
+
+const member = resolve => require(['@/components/overview/member/member'], resolve)
+
+const notice = resolve => require(['@/components/overview/notice/notice'], resolve)
+
+const rendering = resolve => require(['@/components/overview/rendering/rendering'], resolve)
+
+const panorama = resolve => require(['@/components/overview/rendering/child/panorama'], resolve)
+
+const picture = resolve => require(['@/components/overview/rendering/child/picture'], resolve)
+
 const AiDetails = resolve => require(['@/base/AI-list/AI-details/AI-details'], resolve)
 
 
@@ -87,6 +99,56 @@ export default new Router({
                         meta: {
                           index: 4
                         },
+                      },
+                      {
+                        path: 'dynamic',
+                        name: 'dynamic',
+                        component: dynamic,
+                        meta: {
+                          index: 4
+                        }
+                      },
+                      {
+                        path: 'member',
+                        name: 'member',
+                        component: member,
+                        meta: {
+                          index: 4
+                        }
+                      },
+                      {
+                        path: 'notice',
+                        name: 'notice',
+                        component: notice,
+                        meta: {
+                          index: 4
+                        }
+                      },
+                      {
+                        path: 'rendering',
+                        name: 'rendering',
+                        component: rendering,
+                        meta: {
+                          index: 4
+                        },
+                        children: [
+                          {
+                            path: 'picture',
+                            name: 'picture',
+                            component: picture,
+                            meta: {
+                              index: 5
+                            }
+                          },
+                          {
+                            path: 'panorama',
+                            name: 'panorama',
+                            component: panorama,
+                            meta: {
+                              index: 5
+                            }
+                          }
+                        ]
                       }
                     ]
                   }

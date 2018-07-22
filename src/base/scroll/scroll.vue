@@ -89,7 +89,13 @@
           this.scroll.on('scrollEnd', () => {
             //console.log(this.scroll.y)
             //console.log(this.scroll.maxScrollY)
-            
+            if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+              this.$emit('scrollToEnd')
+              setTimeout(() => {
+              this.addMoreText = '别扯了，已经到底了'
+              Bus.$emit("addMoreText",this.addMoreText);
+              },300)
+            }
           })
         }
 

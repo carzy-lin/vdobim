@@ -17,7 +17,7 @@
 </template>
 
 <script>
-
+import {mapGetters} from 'vuex'
 
 export default {
   data () {
@@ -36,14 +36,37 @@ export default {
   },
   methods: {
     back () {
-     this.$router.back()
+     let router = this.$route.name
+     console.log(router)
+     if(router == 'basic-information' || router == 'dynamic' || router == 'member' || router == 'rendering' || router == 'notice') {
+        this.$router.push({
+          path: '/index/${projectDetails.project_id}'
+        })
+     }else if(router == ':id'){
+        this.$router.push({
+          path: '/index'
+        })
+     }else{
+       this.$router.back() 
+     }
     }
   },
   computed: {
-
+    ...mapGetters([
+        'projectDetails'
+    ])
   },
   created(){
       
+  },
+  watch: {
+    $route(to, from) {
+      /* if(from.meta.index == 3 || from.meta.index==4 && to.path== 'overview') {
+         this.$router.push({
+            path: '/index/${projectDetails.project_id}/AI'
+         })
+       }*/
+    }
   }
 }  
 </script>

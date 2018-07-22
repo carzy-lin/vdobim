@@ -1,83 +1,93 @@
 export const projectMenu = [
   {
     "title": "概况",
-    "url": "/",
+    "url": "basic-information",
+    "id": "1",
     "img": "../../static/img/projectMenu/vm-home-1.png"
   },
   {
     "title": "模型",
     "url": "/",
+    "id": "2",
     "img": "../../static/img/projectMenu/vm-home-2.png"
   },
   {
     "title": "计划",
     "url": "/",
+    "id": "3",
     "img": "../../static/img/projectMenu/vm-home-3.png"
   },
   {
     "title": "问题",
     "url": "/",
+    "id": "4",
     "img": "../../static/img/projectMenu/vm-home-4.png"
   },
   {
     "title": "图纸",
     "url": "/",
+    "id": "5",
     "img": "../../static/img/projectMenu/vm-home-5.png"
   },
   {
     "title": "文档",
     "url": "/",
+    "id": "6",
     "img": "../../static/img/projectMenu/vm-home-6.png"
   },
   {
     "title": "现场",
     "url": "/",
+    "id": "7",
     "img": "../../static/img/projectMenu/vm-home-7.png"
-  },
-  {
-    "title": "更多",
-    "url": "/",
-    "img": "../../static/img/projectMenu/vm-home-11.png"
   },
   {
     "title": "设置",
     "url": "/",
-    "img": ""
+    "id": "8",
+    "img": "../../static/img/projectMenu/vm-home-8.png"
   },
   {
     "title": "通知",
     "url": "/",
-    "img": ""
+    "id": "9",
+    "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "简报",
     "url": "/",
-    "img": ""
+    "id": "10",
+    "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "进度",
     "url": "/",
-    "img": ""
+    "id": "11",
+    "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "合同",
     "url": "/",
-    "img": ""
+    "id": "12",
+    "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "签证",
     "url": "/",
-    "img": ""
+    "id": "13",
+    "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "二维码",
     "url": "/",
-    "img": ""
+    "id": "14",
+    "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "审批",
     "url": "/",
-    "img": ""
+    "id": "15",
+    "img": "../../static/img/projectMenu/vm-home-9.png"
   }
 ]
 
@@ -116,18 +126,18 @@ export const overviewMenu = [
   },
   {
     "title": "项目动态",
-    "url": "basic-information"
+    "url": "dynamic"
   },
   {
     "title": "项目通知",
-    "url": "basic-information"
+    "url": "notice"
   },
   {
     "title": "项目成员",
-    "url": "basic-information"
+    "url": "member"
   },
   {
     "title": "效果图",
-    "url": "basic-information"
+    "url": "rendering"
   }
 ]

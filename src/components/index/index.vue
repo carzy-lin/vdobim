@@ -129,13 +129,14 @@ export default {
   watch: {
     $route(to, from) {
         //如果to的索引值为0，不添加任何动画；如果to索引大于from索引,判断为前进状态,反之则为后退状态
+        if(from.meta.index < 2){
+          this.decline = false
+        }
         if(to.meta.index > 0){
             if( to.meta.index < from.meta.index){
-                this.transitionName = 'cover-right';
                 this.decline = false
                 console.log(1)
             }else{
-                this.transitionName = 'cover-left';
                 this.decline = true
                 console.log(2)
             }
@@ -143,7 +144,6 @@ export default {
                this.decline = true
             }
         }else if(to.meta.index == 0 && from.meta.index > 0){
-            this.transitionName = 'cover-left';
             this.decline = true
             console.log(3)
         }
