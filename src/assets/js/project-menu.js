@@ -7,7 +7,7 @@ export const projectMenu = [
   },
   {
     "title": "模型",
-    "url": "/",
+    "url": "model",
     "id": "2",
     "img": "../../static/img/projectMenu/vm-home-2.png"
   },
@@ -48,21 +48,9 @@ export const projectMenu = [
     "img": "../../static/img/projectMenu/vm-home-8.png"
   },
   {
-    "title": "通知",
-    "url": "/",
-    "id": "9",
-    "img": "../../static/img/projectMenu/vm-home-9.png"
-  },
-  {
     "title": "简报",
     "url": "/",
     "id": "10",
-    "img": "../../static/img/projectMenu/vm-home-9.png"
-  },
-  {
-    "title": "进度",
-    "url": "/",
-    "id": "11",
     "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
@@ -75,12 +63,6 @@ export const projectMenu = [
     "title": "签证",
     "url": "/",
     "id": "13",
-    "img": "../../static/img/projectMenu/vm-home-9.png"
-  },
-  {
-    "title": "二维码",
-    "url": "/",
-    "id": "14",
     "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
@@ -138,6 +120,6 @@ export const overviewMenu = [
   },
   {
     "title": "效果图",
-    "url": "rendering"
+    "url": "picture"
   }
 ]

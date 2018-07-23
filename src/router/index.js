@@ -10,6 +10,8 @@ const Index = resolve => require(['@/components/index/index'], resolve)
 
 const Home = resolve => require(['@/components/home/home'], resolve)
 
+const model = resolve => require(['@/components/model/model'], resolve)
+
 const AiFg = resolve => require(['@/components/AI/AI'], resolve)
 
 const overview = resolve => require(['@/components/overview/overview'], resolve)
@@ -151,6 +153,14 @@ export default new Router({
                         ]
                       }
                     ]
+                  },
+                  {
+                    path: 'model',
+                    name: 'model',
+                    component: model,
+                    meta: {
+                      index: 3
+                    }
                   }
                 ]
               }

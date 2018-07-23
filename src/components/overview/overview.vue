@@ -1,6 +1,6 @@
 <template>
   <div class="overview main-fill">
-     <vm-header>
+    <vm-header>
         <p class="_effect" slot='center' :class="{'_effect--50':decline}">
           <span class="top-title__text _ellipsis" v-text='title'></span>
         </p>

@@ -9,12 +9,17 @@
         <scroll ref="scroll" class="vm-scroll" :data="filterAI">
           <div class="home-box">
             <div class="home-menu">
-              <div class="menu-item fl" v-for="item in projectMenu">
-                <router-link  tag="div" class="tab-item menu-item-box" :to="{name: item.url,query:{title: item.title}}">
-                  <img :src="item.img">
-                </router-link>
-                <span>{{item.title}}</span>
-              </div>
+              <swiper :options="swiperOption">
+                <swiper-slide v-for="(page,index) in pages" :key="index">
+                  <div class="menu-item fl" v-for="item of page" :key="item.id">
+                    <router-link  tag="div" class="tab-item menu-item-box" :to="{name: item.url,query:{title: item.title}}">
+                      <img :src="item.img">
+                    </router-link>
+                    <span>{{item.title}}</span>
+                  </div>
+                </swiper-slide>
+                <div class="swiper-pagination" slot="pagination"></div>
+              </swiper>
             </div>
             <div class="home-AI">
               <div class="AI-head frame-1px">
@@ -72,32 +77,18 @@ export default {
        decline: false,
        cover: "cover-right",
        swiperOption: {
-          notNextTick: true,
-            autoplay: {
-            delay: 30000
-          },
-          speed: 1000,
-          loop: true,
+          autoplay: false,
           pagination: {
-          el: '.swiper-pagination'
+            el: '.swiper-pagination'
           },
-          effect: 'fade',
-          fade: {
-           crossFade: false
-          },
-          scrollbarHide: true,
-          paginationClickable: true,
-          lazyLoading: true,
-          lazyLoadingInPrevNext: true,
-          lazyLoadingOnTransitionStart: false,
-          lazyLoadingInPrevNextAmount: 1,
-          calculateHeight: true
        }
     }
   },
   components: {
     VmHeader,
     Scroll,
+    swiper,
+    swiperSlide,
     AIList
   },
   methods: {
@@ -125,6 +116,17 @@ export default {
     ]),
     filterAI: function () {
      return this.AIlist.slice(0,2)
+    },
+    pages: function () {
+        const pages = []
+        this.projectMenu.forEach((item, index) => {
+          const page = Math.floor(index / 8)
+          if (!pages[page]) {
+            pages[page] = []
+          }
+          pages[page].push(item)
+        })
+        return pages
     }
   },
   created(){
@@ -156,9 +158,12 @@ export default {
 
 .home-box {
   .home-menu {
-    padding: .15rem;
+    padding: 0 .15rem;
     overflow: hidden;
     border-bottom: .1rem solid $color-e;
+    .swiper-container {
+      padding: .15rem 0;
+    }
     .menu-item {
        display: flex;
        flex-direction: column;
