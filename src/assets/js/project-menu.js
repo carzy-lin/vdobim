@@ -13,61 +13,61 @@ export const projectMenu = [
   },
   {
     "title": "计划",
-    "url": "/",
+    "url": "plan",
     "id": "3",
     "img": "../../static/img/projectMenu/vm-home-3.png"
   },
   {
     "title": "问题",
-    "url": "/",
+    "url": "problem",
     "id": "4",
     "img": "../../static/img/projectMenu/vm-home-4.png"
   },
   {
     "title": "图纸",
-    "url": "/",
+    "url": "drawing",
     "id": "5",
     "img": "../../static/img/projectMenu/vm-home-5.png"
   },
   {
     "title": "文档",
-    "url": "/",
+    "url": "document",
     "id": "6",
     "img": "../../static/img/projectMenu/vm-home-6.png"
   },
   {
     "title": "现场",
-    "url": "/",
+    "url": "scene",
     "id": "7",
     "img": "../../static/img/projectMenu/vm-home-7.png"
   },
   {
     "title": "设置",
-    "url": "/",
+    "url": "setting",
     "id": "8",
     "img": "../../static/img/projectMenu/vm-home-8.png"
   },
   {
     "title": "简报",
-    "url": "/",
+    "url": "briefing",
     "id": "10",
     "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "合同",
-    "url": "/",
+    "url": "contract",
     "id": "12",
     "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "签证",
-    "url": "/",
+    "url": "visa",
     "id": "13",
     "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "审批",
-    "url": "/",
+    "url": "approval",
     "id": "15",
     "img": "../../static/img/projectMenu/vm-home-9.png"
   }

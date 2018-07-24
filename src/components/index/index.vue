@@ -133,7 +133,7 @@ export default {
           this.decline = false
         }
         if(to.meta.index > 0){
-            if( to.meta.index < from.meta.index){
+            if( to.meta.index < from.meta.index || to.meta.index == from.meta.index){
                 this.decline = false
                 console.log(1)
             }else{

@@ -1,8 +1,8 @@
 <template>
-  <div class="model main-fill">
+  <div class="model main">
     <vm-header>
         <p class="_effect" slot='center' :class="{'_effect--50':decline}">
-          <span class="top-title__text _ellipsis" v-text='$route.query.name'></span>
+          <span class="top-title__text _ellipsis" v-text=''></span>
         </p>
     </vm-header>
     <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
@@ -11,11 +11,8 @@
 </template>
 
 <script>
-import {mapGetters,mapActions,mapMutations} from 'vuex'
+import {mapGetters} from 'vuex'
 import VmHeader from 'base/header/header'
-import Scroll from 'base/scroll/scroll'
-import api from '../../api/api'
-import {SUCCESS_OK} from '../../api/config'
 
 export default {
   data () {
@@ -31,7 +28,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'projectDetails'
+      
+        'projectDetails'
     ])
   },
   created(){

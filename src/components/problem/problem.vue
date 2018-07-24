@@ -11,11 +11,8 @@
 </template>
 
 <script>
-import {mapGetters,mapActions,mapMutations} from 'vuex'
+import {mapGetters} from 'vuex'
 import VmHeader from 'base/header/header'
-import Scroll from 'base/scroll/scroll'
-import api from '../../api/api'
-import {SUCCESS_OK} from '../../api/config'
 
 export default {
   data () {
@@ -27,15 +24,15 @@ export default {
     VmHeader
   },
   methods: {
-    
+
   },
   computed: {
     ...mapGetters([
-      'projectDetails'
+        'projectDetails'
     ])
   },
   created(){
-    
+      
   },
   watch: {
     $route(to, from) {

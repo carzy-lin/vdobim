@@ -12,7 +12,7 @@
               <swiper :options="swiperOption">
                 <swiper-slide v-for="(page,index) in pages" :key="index">
                   <div class="menu-item fl" v-for="item of page" :key="item.id">
-                    <router-link  tag="div" class="tab-item menu-item-box" :to="{name: item.url,query:{title: item.title}}">
+                    <router-link  tag="div" class="tab-item menu-item-box" :to="{name: item.url,query:{name: item.title}}">
                       <img :src="item.img">
                     </router-link>
                     <span>{{item.title}}</span>

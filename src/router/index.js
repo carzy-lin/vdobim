@@ -8,9 +8,35 @@ const Login = resolve => require(['@/components/login/login'], resolve)
 
 const Index = resolve => require(['@/components/index/index'], resolve)
 
+const myProblem = resolve => require(['@/components/my-problem/my-problem'], resolve)
+
+const news = resolve => require(['@/components/news/news'], resolve)
+
+const mine = resolve => require(['@/components/mine/mine'], resolve)
+
 const Home = resolve => require(['@/components/home/home'], resolve)
 
 const model = resolve => require(['@/components/model/model'], resolve)
+
+const plan = resolve => require(['@/components/plan/plan'], resolve)
+
+const problem = resolve => require(['@/components/problem/problem'], resolve)
+
+const drawing = resolve => require(['@/components/drawing/drawing'], resolve)
+
+const document = resolve => require(['@/components/document/document'], resolve)
+
+const scene = resolve => require(['@/components/scene/scene'], resolve)
+
+const setting = resolve => require(['@/components/setting/setting'], resolve)
+
+const briefing = resolve => require(['@/components/briefing/briefing'], resolve)
+
+const contract = resolve => require(['@/components/contract/contract'], resolve)
+
+const visa = resolve => require(['@/components/visa/visa'], resolve)
+
+const approval = resolve => require(['@/components/approval/approval'], resolve)
 
 const AiFg = resolve => require(['@/components/AI/AI'], resolve)
 
@@ -161,10 +187,114 @@ export default new Router({
                     meta: {
                       index: 3
                     }
+                  },
+                  {
+                    path: 'plan',
+                    name: 'plan',
+                    component: plan,
+                    meta: {
+                      index: 3
+                    }
+                  },
+                  {
+                    path: 'problem',
+                    name: 'problem',
+                    component: problem,
+                    meta: {
+                      index: 3
+                    }
+                  },
+                  {
+                    path: 'drawing',
+                    name: 'drawing',
+                    component: drawing,
+                    meta: {
+                      index: 3
+                    }
+                  },
+                  {
+                    path: 'document',
+                    name: 'document',
+                    component: document,
+                    meta: {
+                      index: 3
+                    }
+                  },
+                  {
+                    path: 'scene',
+                    name: 'scene',
+                    component: scene,
+                    meta: {
+                      index: 3
+                    }
+                  },
+                  {
+                    path: 'setting',
+                    name: 'setting',
+                    component: setting,
+                    meta: {
+                      index: 3
+                    }
+                  },
+                  {
+                    path: 'briefing',
+                    name: 'briefing',
+                    component: briefing,
+                    meta: {
+                      index: 3
+                    }
+                  },
+                  {
+                    path: 'contract',
+                    name: 'contract',
+                    component: contract,
+                    meta: {
+                      index: 3
+                    }
+                  },
+                  {
+                    path: 'visa',
+                    name: 'visa',
+                    component: visa,
+                    meta: {
+                      index: 3
+                    }
+                  },
+                  {
+                    path: 'approval',
+                    name: 'approval',
+                    component: approval,
+                    meta: {
+                      index: 3
+                    }
                   }
                 ]
               }
             ]
+        },
+        {
+            path: '/my-problem',
+            name: 'my-problem',
+            component: myProblem,
+            meta: {
+              index: 1
+            }
+        },
+        {
+            path: '/news',
+            name: 'news',
+            component: news,
+            meta: {
+              index: 1
+            }
+        },
+        {
+            path: '/mine',
+            name: 'mine',
+            component: mine,
+            meta: {
+              index: 1
+            }
         },
         
     ]

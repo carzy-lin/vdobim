@@ -4,7 +4,7 @@
       <span class="icon-project"></span>
       <span class="tab-link">项目</span>
     </router-link>
-    <router-link tag="div" class="tab-item" to="/problem">
+    <router-link tag="div" class="tab-item" to="/my-problem">
       <span class="icon-problem"></span>
       <span class="tab-link">问题</span>
     </router-link>

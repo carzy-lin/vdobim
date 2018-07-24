@@ -71,6 +71,12 @@ export default {
   },
   getProjectEffectList(params) {
     return fetch(`${base}/picture/pictureList`, params)
+  },
+  getModelList(params) {
+    return fetch(`${base}/module/moduleList`, params)
+  },
+  getMyProblem(params) {
+    return fetch(`${base}/user/myQuestion`, params)
   }
 }
 
