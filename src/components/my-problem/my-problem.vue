@@ -7,6 +7,8 @@
     </vm-header>
     <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
       {{myProblem}}
+      {{this.unitId}}
+      {{this.uid}}
     </div>
   </div>
 </template>
@@ -35,6 +37,7 @@ export default {
         api.getMyProblem({uid: this.uid,unit_id: this.unitId,token: this.token,page: this.page}).then(resp => {
           var resp = eval(resp)
           console.log(resp)
+
           if (resp.resp_code === SUCCESS_OK) {
             this.myProblem = resp.response.list
             console.log(487,this.myProblem)
