@@ -24,6 +24,8 @@ export const GET_PROJECT = 'GET_PROJECT';
 
 export const GET_AI = 'GET_AI';
 
+export const GET_MESSAGE = 'GET_MESSAGE';
+
 export const GET_PROJECT_DETAILS = 'GET_PROJECT_DETAILS';
 
 export const GET_AI_DETAILS = 'GET_AI_DETAILS';

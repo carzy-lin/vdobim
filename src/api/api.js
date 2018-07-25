@@ -77,6 +77,12 @@ export default {
   },
   getMyProblem(params) {
     return fetch(`${base}/user/myQuestion`, params)
+  },
+  getMyMessage(params) {
+    return fetch(`${base}/user/myMessage`, params)
+  },
+  getUserMessage(params) {
+    return fetch(`${base}/user/userMessage`, params)
   }
 }
 
