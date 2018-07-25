@@ -1,35 +1,40 @@
 <template>
   <div class="mine main">
-    <el-row class="vm-mine-head">
-      <el-col  class="vm-head-box"  :span="24">
-        <h3 v-text="title"></h3>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col class="vm-top" :span="24">
-        <el-col @click.native="path" class="vm-mine-username"  :span="24">
-          <div class="vm-mine-specific">
-            <img :src="userMessage.portrait">
-            <span>{{userMessage.nickname}}</span>
-          </div>
-          <span class="icon-return-white vm-rotate"></span>
+    <div class="_effect" :class="{'_effect--30':decline}">
+      <el-row class="vm-mine-head">
+        <el-col  class="vm-head-box"  :span="24">
+          <h3 v-text="title"></h3>
         </el-col>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="24" class="vm-mine-item">
-        <router-link class="vm-item-list frame-1px" v-for="(item,index) in menu" :key="index" :to="item.url">
-            <div class="vm-item-name">
-              <span class="vm-item-icon" :class="item.icon"></span>
-            <span>{{item.title}}</span>
-          </div>
-          <span class="icon-return-white vm-rotate"></span>
-        </router-link>
-      </el-col>
-      <el-col :span="24">
-        <router-link class="vm-quit" to="/application">退出当前账号</router-link>
-      </el-col>
-    </el-row>
+      </el-row>
+      <el-row>
+        <el-col class="vm-top" :span="24">
+          <el-col @click.native="path" class="vm-mine-username"  :span="24">
+            <div class="vm-mine-specific">
+              <img :src="userMessage.portrait">
+              <span>{{userMessage.nickname}}</span>
+            </div>
+            <span class="icon-return-white vm-rotate"></span>
+          </el-col>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24" class="vm-mine-item">
+          <router-link class="vm-item-list frame-1px" v-for="(item,index) in menu" :key="index" :to="item.url">
+              <div class="vm-item-name">
+                <span class="vm-item-icon" :class="item.icon"></span>
+              <span>{{item.title}}</span>
+            </div>
+            <span class="icon-return-white vm-rotate"></span>
+          </router-link>
+        </el-col>
+        <el-col :span="24">
+          <router-link class="vm-quit" to="/quit">退出当前账号</router-link>
+        </el-col>
+      </el-row>
+    </div>
+    <transition :name="cover">
+      <router-view :getUserMessage="userMessage"></router-view>
+    </transition>
   </div>
 </template>
 
@@ -46,6 +51,7 @@ export default {
       title: '我的',
       decline: false,
       menu: mineMenu,
+      cover: "cover-right",
       userMessage: []
     }
   },
@@ -53,12 +59,15 @@ export default {
     VmHeader,
   },
   methods: {
+    path() {
+      var _this = this;
+      _this.$router.push({path: '/mine/user-info'})
+    },
     async getData() {
-        api.getMyMessage({uid: this.uid,token: this.token,page: this.page}).then(resp => {
+        api.getUserMessage({uid: this.uid,token: this.token}).then(resp => {
           var resp = eval(resp)
-          console.log(resp)
           if (resp.resp_code === SUCCESS_OK) {
-            this.userMessage = resp.response.list
+            this.userMessage = resp.response
             console.log(this.userMessage)
           }
         });
@@ -75,6 +84,17 @@ export default {
     this.getData()
   },
   watch: {
+    $route(to, from) {
+        //如果to的索引值为0，不添加任何动画；如果to索引大于from索引,判断为前进状态,反之则为后退状态
+        if(to.meta.index > 0){
+            if( to.meta.index < from.meta.index || to.meta.index == from.meta.index){
+                this.decline = false
+            }else{
+                this.decline = true
+            }
+        }
+
+    }
   }
 }  
 </script>

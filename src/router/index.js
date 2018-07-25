@@ -14,6 +14,10 @@ const news = resolve => require(['@/components/news/news'], resolve)
 
 const mine = resolve => require(['@/components/mine/mine'], resolve)
 
+const quit = resolve => require(['@/components/mine/quit/quit'], resolve)
+
+const userInfo = resolve => require(['@/components/mine/user-info/user-info'], resolve)
+
 const Home = resolve => require(['@/components/home/home'], resolve)
 
 const model = resolve => require(['@/components/model/model'], resolve)
@@ -294,8 +298,22 @@ export default new Router({
             component: mine,
             meta: {
               index: 1
-            }
+            },
+            children: [
+              {
+                path: 'user-info',
+                name: 'user-info',
+                component: userInfo,
+                meta: {
+                  index: 2
+                }
+              }
+            ]
         },
-        
+        {
+          path: '/quit',
+          name: 'quit',
+          component: quit
+        }
     ]
 })
