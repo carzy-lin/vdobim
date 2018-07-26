@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="userinfo">
+  <div class="userinfo">
 	   <el-row class="vm-userinfo-head frame-1px _cover-top">
 	      <el-col  class="vm-userinfo"  :span="24">
 	        <div class="vm-return-top" @click="back">
@@ -19,7 +19,7 @@
 	              <label>头像</label>
 	              <img :src="getUserMessage.portrait">
 	            </div>
-	            <div class="vm-userinfo-list frame-1px">
+	            <div class="vm-userinfo-list frame-1px" @click="username">
 	              <label>用户名</label>
 	              <span>{{getUserMessage.nickname}}</span>
 	            </div>
@@ -54,6 +54,9 @@
 	       </div>
 	     </el-col>
 	   </el-row>
+     <transition :name="cover">
+      <router-view></router-view>
+     </transition>
 	</div>
   </transition>
 </template>
@@ -62,19 +65,35 @@
 export default {
   data () {
     return {
-      decline: false
+      decline: false,
+      cover: "cover-right",
     }
   },
   props: {
     getUserMessage: {
-      type: Object,
       default: ''
     }
   },
   methods: {
+    username () {
+      var _this = this;
+      _this.$router.push({path: '/mine/user-info/modify-name'})
+    },
   	back () {
       this.$router.back()
   	}
+  },
+  watch: {
+    $route(to, from) {
+        if(to.meta.index > 0){
+            if( to.meta.index < from.meta.index || to.meta.index == from.meta.index){
+                this.decline = false
+            }else{
+                this.decline = true
+            }
+        }
+
+    }
   }
 }  
 </script>
@@ -88,8 +107,8 @@ export default {
   	top: 0;
   	left: 0;
   	right: 0;
-  	bottom: 0;
-  	background-color: #f0f0f0;
+  	bottom: .44rem;
+  	background-color: #f5f5f5;
   	overflow: hidden;
   	h3 {
   		font-weight: 700;
@@ -129,6 +148,7 @@ export default {
   	}
   }
   .vm-userinfo-bg {
+    margin-top: .15rem;
   	background: $color-white;
   	padding: $pd-lf;
   }

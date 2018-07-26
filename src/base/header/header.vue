@@ -1,10 +1,12 @@
 <template>
   <div class="header item-header _cover-top">
     <div class="top-back">
-      <span class="left icon return" @click="back()">返回</span>
+      <span class="left icon return" @click="back()" v-text="returnName"></span>
     </div>
     <div class="top-right">
-      <span class="right icon search">搜索</span>
+      <slot name="right">
+        <span class="right icon search" v-text="searchName"></span>
+      </slot>
     </div>
     <div class="title top-title _effect" :class="{'_effect--50':decline}">
       <slot name="center">
@@ -22,7 +24,9 @@ import {mapGetters} from 'vuex'
 export default {
   data () {
     return {
-      decline: false
+      decline: false,
+      searchName: '搜索',
+      returnName: '返回'
     }
   },
   props: {
@@ -78,6 +82,7 @@ export default {
   display: flex;
   position: relative;
   height: .44rem;
+  background: #fff;
   justify-content: center;
   align-items: center;
   padding: $pd-lf;

@@ -18,6 +18,8 @@ const quit = resolve => require(['@/components/mine/quit/quit'], resolve)
 
 const userInfo = resolve => require(['@/components/mine/user-info/user-info'], resolve)
 
+const modifyName = resolve => require(['@/components/mine/user-info/modify-name'], resolve)
+
 const Home = resolve => require(['@/components/home/home'], resolve)
 
 const model = resolve => require(['@/components/model/model'], resolve)
@@ -306,7 +308,16 @@ export default new Router({
                 component: userInfo,
                 meta: {
                   index: 2
-                }
+                },
+                children: [
+                  {
+                    path: 'modify-name',
+                    component: modifyName,
+                    meta: {
+                       index: 3
+                    }
+                  }
+                ]
               }
             ]
         },
