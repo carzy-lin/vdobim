@@ -8,7 +8,7 @@
       </vm-header>
       <div class="vm-put">
         <span>名称</span>
-        <input type="text" v-focus @focus="focus" v-model="val" ref="ipt">
+        <input autofocus  type="text"  v-model="val" ref="searchInput">
       </div>
       <div class="remarks">
         设置后，其他人将看到你的名称
@@ -27,26 +27,25 @@ export default {
       val: ''
     }
   },
+  mounted(){
+   this.$nextTick(() => {
+     this.$refs.searchInput.focus()
+   })
+  },
   components: {
     VmHeader
   },
   methods: {
-    focus: function(e) {
-      
+    myFocus () {
+       //this.$refs.val.focus();
     }
   },
-  directives: {
-      focus: {
-        inserted: function (e) {
-          e.focus()
-        }
-      }
-  },
+   
   computed: {
     
   },
   created(){
-    this.focus()
+   
   },
   watch: {
 
