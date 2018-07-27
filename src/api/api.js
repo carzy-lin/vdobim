@@ -83,6 +83,9 @@ export default {
   },
   getUserMessage(params) {
     return fetch(`${base}/user/userMessage`, params)
+  },
+  sendUserMessage(params) {
+    return fetch(`${base}/user/updateUser`, params)
   }
 }
 

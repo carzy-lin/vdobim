@@ -19,9 +19,9 @@
 	              <label>头像</label>
 	              <img :src="getUserMessage.portrait">
 	            </div>
-	            <div class="vm-userinfo-list frame-1px" @click="username">
+	            <div class="vm-userinfo-list frame-1px" @click="modifyName">
 	              <label>用户名</label>
-	              <span>{{getUserMessage.nickname}}</span>
+	              <span>{{nickname}}</span>
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>真实姓名</label>
@@ -55,33 +55,44 @@
 	     </el-col>
 	   </el-row>
      <transition :name="cover">
-      <router-view></router-view>
+      <router-view ></router-view>
      </transition>
 	</div>
   </transition>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   data () {
     return {
       decline: false,
       cover: "cover-right",
-    }
-  },
-  props: {
-    getUserMessage: {
-      default: ''
+      nickname: ''
     }
   },
   methods: {
-    username () {
+    modifyName () {
       var _this = this;
       _this.$router.push({path: '/mine/user-info/modify-name'})
     },
+    getData () {
+      this.nickname = this.getUserMessage.nickname
+    },
   	back () {
       this.$router.back()
-  	}
+  	},
+    showData (name) {
+       this.username = name
+    }
+  },
+  computed: {
+    ...mapGetters([
+        'getUserMessage'
+    ])
+  },
+  created () {
+    this.getData();
   },
   watch: {
     $route(to, from) {
@@ -93,6 +104,11 @@ export default {
             }
         }
 
+    },
+    getUserMessage: {
+      handler() {
+        this.getUserMessage
+      }
     }
   }
 }  

@@ -4,25 +4,30 @@
         <p class="_effect" slot='center' :class="{'_effect--50':decline}">
           <span class="top-title__text _ellipsis" v-text='title'></span>
         </p>
-        <span slot='right' v-text="save"></span>
+        <span slot='right' @click="saveData" v-text="save"></span>
       </vm-header>
       <div class="vm-put">
         <span>名称</span>
         <input autofocus  type="text"  v-model="val" ref="searchInput">
       </div>
       <div class="remarks">
-        设置后，其他人将看到你的名称
+        {{prompt}}
       </div>
   </div>
 </template>
 
 <script>
 import VmHeader from 'base/header/header'
+import {mapGetters} from 'vuex'
+import api from '../../../api/api'
+import {SUCCESS_OK} from '../../../api/config'
+
 export default {
   data () {
     return {
       title: '名称',
       save: '保存',
+      prompt: '设置后，其他人将看到你的名称',
       decline: false,
       val: ''
     }
@@ -36,13 +41,26 @@ export default {
     VmHeader
   },
   methods: {
-    myFocus () {
-       //this.$refs.val.focus();
+    saveData () {
+      //this.$emit("senData",this.val)
+        this.$router.back()
+        api.sendUserMessage({real_name: '林金盛',nickname: this.val,uid: this.uid,token: this.token,unit_id: this.unitId}).then(resp => {
+          var resp = eval(resp)
+          if (resp.resp_code === SUCCESS_OK) {
+            sessionStorage.setItem('modifyNickname',this.val)
+          }else{
+            console.log(2)
+          }
+        });
     }
   },
    
   computed: {
-    
+    ...mapGetters([
+        'token',
+        'uid',
+        'unitId',
+    ])
   },
   created(){
    

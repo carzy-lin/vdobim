@@ -8,7 +8,7 @@
       </el-row>
       <el-row>
         <el-col class="vm-top" :span="24">
-          <el-col @click.native="path" class="vm-mine-username"  :span="24">
+          <el-col @click.native="path(userMessage)" class="vm-mine-username"  :span="24">
             <div class="vm-mine-specific">
               <img :src="userMessage.portrait">
               <span>{{userMessage.nickname}}</span>
@@ -33,13 +33,13 @@
       </el-row>
     </div>
     <transition :name="cover">
-      <router-view :getUserMessage="userMessage"></router-view>
+      <router-view></router-view>
     </transition>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters,mapMutations} from 'vuex'
 import {mineMenu} from 'assets/js/menu'
 import VmHeader from 'base/header/header'
 import api from '../../api/api'
@@ -51,17 +51,18 @@ export default {
       title: '我的',
       decline: false,
       menu: mineMenu,
+      userMessage: [],
       cover: "cover-right",
-      userMessage: []
     }
   },
   components: {
     VmHeader,
   },
   methods: {
-    path() {
+    path(userMessage) {
       var _this = this;
       _this.$router.push({path: '/mine/user-info'})
+      this.setMessage(userMessage)
     },
     async getData() {
         api.getUserMessage({uid: this.uid,token: this.token}).then(resp => {
@@ -71,7 +72,10 @@ export default {
             console.log(this.userMessage)
           }
         });
-    }
+    },
+    ...mapMutations({
+        setMessage: 'GET_USER_MESSAGE'
+    })
   },
   computed: {
     ...mapGetters([
@@ -80,6 +84,7 @@ export default {
         'unitId',
     ])
   },
+  
   created(){
     this.getData()
   },
