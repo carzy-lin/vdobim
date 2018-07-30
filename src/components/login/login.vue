@@ -99,12 +99,14 @@
                 //登录成功，把用户信息保存在sessionStorage中  
                 //sessionStorage.setItem('access-token', token);
                 
+                
                 var getUser = data.response.user
                 var token = data.response.token
                 var uid = data.response.user.uid
                 var unitId = data.response.user.unit_id
                 var utype = data.response.user.utype
                 
+                sessionStorage.setItem('getUser',JSON.stringify(getUser))
                 sessionStorage.setItem('user',data)
                 sessionStorage.setItem('token',data.response.token)
                 sessionStorage.setItem('uid',data.response.user.uid)

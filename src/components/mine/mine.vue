@@ -8,10 +8,10 @@
       </el-row>
       <el-row>
         <el-col class="vm-top" :span="24">
-          <el-col @click.native="path(userMessage)" class="vm-mine-username"  :span="24">
+          <el-col @click.native="path()" class="vm-mine-username"  :span="24">
             <div class="vm-mine-specific">
-              <img :src="userMessage.portrait">
-              <span>{{userMessage.nickname}}</span>
+              <img :src="portrait">
+              <span>{{nickname}}</span>
             </div>
             <span class="icon-return-white vm-rotate"></span>
           </el-col>
@@ -44,6 +44,7 @@ import {mineMenu} from 'assets/js/menu'
 import VmHeader from 'base/header/header'
 import api from '../../api/api'
 import {SUCCESS_OK} from '../../api/config'
+import Bus from 'common/js/bus'
 
 export default {
   data () {
@@ -51,27 +52,25 @@ export default {
       title: '我的',
       decline: false,
       menu: mineMenu,
-      userMessage: [],
+      getUser: {},
       cover: "cover-right",
+      nickname: '',
+      portrait: ''
     }
   },
   components: {
     VmHeader,
+    Bus
   },
   methods: {
-    path(userMessage) {
+    path() {
       var _this = this;
       _this.$router.push({path: '/mine/user-info'})
-      this.setMessage(userMessage)
     },
-    async getData() {
-        api.getUserMessage({uid: this.uid,token: this.token}).then(resp => {
-          var resp = eval(resp)
-          if (resp.resp_code === SUCCESS_OK) {
-            this.userMessage = resp.response
-            console.log(this.userMessage)
-          }
-        });
+    getData() {
+         this.getUser = JSON.parse(sessionStorage.getItem('getUser'));
+         this.nickname = this.getUser.nickname
+         this.portrait= this.getUser.portrait
     },
     ...mapMutations({
         setMessage: 'GET_USER_MESSAGE'
@@ -85,8 +84,13 @@ export default {
     ])
   },
   
-  created(){
+  mounted(){
     this.getData()
+    Bus.$on('msg', () => {
+　　　 this.getUser = JSON.parse(sessionStorage.getItem('getUser'));
+       this.nickname = this.getUser.nickname
+       this.portrait= this.getUser.portrait
+    })
   },
   watch: {
     $route(to, from) {

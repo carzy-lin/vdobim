@@ -21,6 +21,7 @@ import VmHeader from 'base/header/header'
 import {mapGetters} from 'vuex'
 import api from '../../../api/api'
 import {SUCCESS_OK} from '../../../api/config'
+import Bus from 'common/js/bus'
 
 export default {
   data () {
@@ -29,6 +30,7 @@ export default {
       save: '保存',
       prompt: '设置后，其他人将看到你的名称',
       decline: false,
+      //getUser: {},
       val: ''
     }
   },
@@ -38,16 +40,19 @@ export default {
    })
   },
   components: {
-    VmHeader
+    VmHeader,
+    Bus
   },
   methods: {
     saveData () {
-      //this.$emit("senData",this.val)
-        this.$router.back()
-        api.sendUserMessage({real_name: '林金盛',nickname: this.val,uid: this.uid,token: this.token,unit_id: this.unitId}).then(resp => {
+        const getUser = JSON.parse(sessionStorage.getItem('getUser'));
+        api.sendUserMessage({real_name: getUser.real_name,nickname: this.val,uid: this.uid,token: this.token,unit_id: this.unitId}).then(resp => {
           var resp = eval(resp)
           if (resp.resp_code === SUCCESS_OK) {
-            sessionStorage.setItem('modifyNickname',this.val)
+            this.$router.back()
+            getUser.nickname = this.val
+            sessionStorage.setItem("getUser",JSON.stringify(getUser))
+            Bus.$emit('msg')
           }else{
             console.log(2)
           }

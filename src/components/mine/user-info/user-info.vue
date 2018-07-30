@@ -17,19 +17,19 @@
 	       <div class="vm-userinfo-bg">
 	            <div class="vm-userinfo-list vm-specific frame-1px">
 	              <label>头像</label>
-	              <img :src="getUserMessage.portrait">
+	              <img :src="getMessage.portrait">
 	            </div>
 	            <div class="vm-userinfo-list frame-1px" @click="modifyName">
 	              <label>用户名</label>
-	              <span>{{nickname}}</span>
+	              <span>{{getMessage.nickname}}</span>
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>真实姓名</label>
-	              <span>{{getUserMessage.real_name}}</span>
+	              <span>{{getMessage.real_name}}</span>
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>性别</label>
-	              <span>{{getUserMessage.sex}}</span>
+	              <span>{{getMessage.sex}}</span>
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>公司名称</label>
@@ -37,19 +37,19 @@
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>邮箱地址</label>
-	              <span>{{getUserMessage.email}}</span>
+	              <span>{{getMessage.email}}</span>
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>手机号码</label>
-	              <span>{{getUserMessage.mobile}}</span>
+	              <span>{{getMessage.mobile}}</span>
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>QQ</label>
-	              <span>{{getUserMessage.qq}}</span>
+	              <span>{{getMessage.qq}}</span>
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>微信</label>
-	              <span>{{getUserMessage.weixin}}</span>
+	              <span>{{getMessage.weixin}}</span>
 	            </div>
 	       </div>
 	     </el-col>
@@ -62,13 +62,18 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters,mapMutations} from 'vuex'
+import api from '../../../api/api'
+import {SUCCESS_OK} from '../../../api/config'
+import Bus from 'common/js/bus'
+
 export default {
   data () {
     return {
       decline: false,
       cover: "cover-right",
-      nickname: ''
+      getMessage: [],
+      getUser: {}
     }
   },
   methods: {
@@ -77,7 +82,13 @@ export default {
       _this.$router.push({path: '/mine/user-info/modify-name'})
     },
     getData () {
-      this.nickname = this.getUserMessage.nickname
+      //this.nickname = this.getUserMessage.nickname
+      api.getUserMessage({uid: this.uid,token: this.token}).then(resp => {
+          var resp = eval(resp)
+          if (resp.resp_code === SUCCESS_OK) {
+            this.getMessage = resp.response
+          }
+      });
     },
   	back () {
       this.$router.back()
@@ -88,11 +99,18 @@ export default {
   },
   computed: {
     ...mapGetters([
-        'getUserMessage'
+        'getUserMessage',
+        'token',
+        'uid',
+        'unitId',
     ])
   },
   created () {
-    this.getData();
+    this.getData()
+    Bus.$on('msg', () => {
+　　　 this.getUser = JSON.parse(sessionStorage.getItem('getUser'));
+       this.getMessage.nickname = this.getUser.nickname
+    })
   },
   watch: {
     $route(to, from) {
@@ -104,11 +122,6 @@ export default {
             }
         }
 
-    },
-    getUserMessage: {
-      handler() {
-        this.getUserMessage
-      }
     }
   }
 }  
