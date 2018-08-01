@@ -432,7 +432,51 @@ a:hover { text-decoration: underline; }
 }
 /**/
 
-
+/*modify userinfo*/
+.modify-userinfo {
+  background: #f5f5f5;
+  .remarks {
+    padding: .1rem .15rem 0;
+    color: $color-9;
+  }
+  .vm-put {
+    display: flex;
+    background: #fff;
+    margin-top: .1rem;
+    padding: .05rem .3rem .05rem .15rem;
+    align-items: center;
+    border-top: 1px solid $color-e;
+    border-bottom: 1px solid $color-e;
+    span {
+      flex: 0 0 .3rem;
+      padding-right: .15rem;
+    }
+    input {
+      flex: 1;
+      height: .3rem;
+      line-height: .3rem;
+      color: #000;
+    }
+    .clear {
+       position: absolute;
+       right: .1rem;
+       display: inline-block;
+       width: .15rem;
+       height: .15rem;
+       border-radius: 50%;
+       background: $color-c;
+    }
+    .clear::after {
+      content: 'x';
+      font-size: .12rem;
+      position: absolute;
+      left: .038rem;
+      top: .01rem;
+      color: #fff;
+    }
+  }
+}
+/*modify userinfo*/
 
 @media (min-width: 320px ) and (max-width: 360px){
 

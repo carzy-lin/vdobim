@@ -23,19 +23,21 @@
 	              <label>用户名</label>
 	              <span>{{getMessage.nickname}}</span>
 	            </div>
-	            <div class="vm-userinfo-list frame-1px">
+	            <div class="vm-userinfo-list frame-1px" @click="modifyRelaName">
 	              <label>真实姓名</label>
 	              <span>{{getMessage.real_name}}</span>
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>性别</label>
-	              <span>{{getMessage.sex}}</span>
+	              <span v-if="getMessage.sex==0">{{sex}}</span>
+                <span v-if="getMessage.sex==1">{{sex1}}</span>
+                <span v-if="getMessage.sex==2">{{sex2}}</span>
 	            </div>
 	            <div class="vm-userinfo-list frame-1px">
 	              <label>公司名称</label>
-	              <span></span>
+	              <span>{{unit_name}}</span>
 	            </div>
-	            <div class="vm-userinfo-list frame-1px">
+	            <div class="vm-userinfo-list frame-1px" @click="modifyEmail">
 	              <label>邮箱地址</label>
 	              <span>{{getMessage.email}}</span>
 	            </div>
@@ -43,11 +45,11 @@
 	              <label>手机号码</label>
 	              <span>{{getMessage.mobile}}</span>
 	            </div>
-	            <div class="vm-userinfo-list frame-1px">
+	            <div class="vm-userinfo-list frame-1px" @click="modifyQQ">
 	              <label>QQ</label>
 	              <span>{{getMessage.qq}}</span>
 	            </div>
-	            <div class="vm-userinfo-list frame-1px">
+	            <div class="vm-userinfo-list frame-1px" @click="modifyWeChat">
 	              <label>微信</label>
 	              <span>{{getMessage.weixin}}</span>
 	            </div>
@@ -73,6 +75,10 @@ export default {
       decline: false,
       cover: "cover-right",
       getMessage: [],
+      sex: '保密',
+      sex1: '男',
+      sex2: '女',
+      unit_name: '',
       getUser: {}
     }
   },
@@ -81,12 +87,31 @@ export default {
       var _this = this;
       _this.$router.push({path: '/mine/user-info/modify-name'})
     },
+    modifyRelaName () {
+      var _this = this;
+      _this.$router.push({path: '/mine/user-info/modify-realName'})
+    },
+    modifyEmail () {
+      var _this = this;
+      _this.$router.push({path: '/mine/user-info/modify-email'})
+    },
+    modifyQQ () {
+      var _this = this;
+      _this.$router.push({path: '/mine/user-info/modify-QQ'})
+    },
+    modifyWeChat () {
+      var _this = this;
+      _this.$router.push({path: '/mine/user-info/modify-weChat'})
+    },
     getData () {
       //this.nickname = this.getUserMessage.nickname
+      this.getUser = JSON.parse(sessionStorage.getItem('getUser'));
+      this.unit_name = this.getUser.unit_name
       api.getUserMessage({uid: this.uid,token: this.token}).then(resp => {
           var resp = eval(resp)
           if (resp.resp_code === SUCCESS_OK) {
             this.getMessage = resp.response
+            sessionStorage.setItem('setMessage',JSON.stringify(this.getMessage))
           }
       });
     },
@@ -110,6 +135,16 @@ export default {
     Bus.$on('msg', () => {
 　　　 this.getUser = JSON.parse(sessionStorage.getItem('getUser'));
        this.getMessage.nickname = this.getUser.nickname
+       this.getMessage.real_name = this.getUser.real_name
+    }),
+    Bus.$on('setEmail', (e) => {
+       this.getMessage.email = e;
+    }),
+    Bus.$on('setQQ', (qq) => {
+       this.getMessage.qq = qq;
+    }),
+    Bus.$on('setWeChat', (wei) => {
+       this.getMessage.weixin = wei;
     })
   },
   watch: {
@@ -191,6 +226,9 @@ export default {
       	align-items: center;
       	justify-content: space-between;
       	font-size: $font-size-medium-x;
+        span {
+          color: $color-9;
+        }
       }
       .vm-specific {
         height: .64rem;

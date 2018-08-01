@@ -105,6 +105,8 @@
                 var uid = data.response.user.uid
                 var unitId = data.response.user.unit_id
                 var utype = data.response.user.utype
+
+
                 
                 sessionStorage.setItem('getUser',JSON.stringify(getUser))
                 sessionStorage.setItem('user',data)

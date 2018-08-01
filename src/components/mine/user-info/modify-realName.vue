@@ -8,8 +8,7 @@
       </vm-header>
       <div class="vm-put">
         <span>{{title}}</span>
-        <input autofocus   type="text"  v-model="val"  ref="searchInput">
-        <i class="clear" @click="clear" v-show="val" ></i>
+        <input autofocus  type="text"  v-model="val" ref="searchInput">
       </div>
       <div class="remarks">
         {{prompt}}
@@ -27,11 +26,10 @@ import Bus from 'common/js/bus'
 export default {
   data () {
     return {
-      title: '名称',
+      title: '姓名',
       save: '保存',
-      prompt: '设置后，其他人将看到你的名称',
+      prompt: '设置后，其他人将看到你的姓名',
       decline: false,
-      //getUser: {},
       val: ''
     }
   },
@@ -45,27 +43,20 @@ export default {
     Bus
   },
   methods: {
-    getData () {
-        const getUser = JSON.parse(sessionStorage.getItem('getUser'));
-        this.val = getUser.nickname
-    },
     saveData () {
         const getUser = JSON.parse(sessionStorage.getItem('getUser'));
         const setMessage = JSON.parse(sessionStorage.getItem('setMessage'));
-        api.sendUserMessage({real_name: getUser.real_name,email: setMessage.email,qq: setMessage.qq,weixin: setMessage.weixin,nickname: this.val,uid: this.uid,token: this.token,unit_id: this.unitId}).then(resp => {
+        api.sendUserMessage({real_name: this.val,email: setMessage.email,qq: setMessage.qq,weixin: setMessage.weixin,nickname: getUser.nickname,uid: this.uid,token: this.token,unit_id: this.unitId}).then(resp => {
           var resp = eval(resp)
           if (resp.resp_code === SUCCESS_OK) {
             this.$router.back()
-            getUser.nickname = this.val
+            getUser.real_name = this.val
             sessionStorage.setItem("getUser",JSON.stringify(getUser))
             Bus.$emit('msg')
           }else{
             console.log(2)
           }
         });
-    },
-    clear () {
-      this.val = ''
     }
   },
    
@@ -77,7 +68,7 @@ export default {
     ])
   },
   created(){
-     this.getData();
+   
   },
   watch: {
 

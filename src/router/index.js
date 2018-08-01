@@ -20,6 +20,14 @@ const userInfo = resolve => require(['@/components/mine/user-info/user-info'], r
 
 const modifyName = resolve => require(['@/components/mine/user-info/modify-name'], resolve)
 
+const modifyRealName = resolve => require(['@/components/mine/user-info/modify-realName'], resolve)
+
+const modifyEmail = resolve => require(['@/components/mine/user-info/modify-email'], resolve)
+
+const modifyQQ = resolve => require(['@/components/mine/user-info/modify-QQ'], resolve)
+
+const modifyWeChat = resolve => require(['@/components/mine/user-info/modify-weChat'], resolve)
+
 const Home = resolve => require(['@/components/home/home'], resolve)
 
 const model = resolve => require(['@/components/model/model'], resolve)
@@ -313,6 +321,34 @@ export default new Router({
                   {
                     path: 'modify-name',
                     component: modifyName,
+                    meta: {
+                       index: 3
+                    }
+                  },
+                  {
+                    path: 'modify-realName',
+                    component: modifyRealName,
+                    meta: {
+                       index: 3
+                    }
+                  },
+                  {
+                    path: 'modify-email',
+                    component: modifyEmail,
+                    meta: {
+                       index: 3
+                    }
+                  },
+                  {
+                    path: 'modify-QQ',
+                    component: modifyQQ,
+                    meta: {
+                       index: 3
+                    }
+                  },
+                  {
+                    path: 'modify-weChat',
+                    component: modifyWeChat,
                     meta: {
                        index: 3
                     }

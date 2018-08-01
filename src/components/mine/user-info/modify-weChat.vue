@@ -8,8 +8,7 @@
       </vm-header>
       <div class="vm-put">
         <span>{{title}}</span>
-        <input autofocus   type="text"  v-model="val"  ref="searchInput">
-        <i class="clear" @click="clear" v-show="val" ></i>
+        <input autofocus  type="text"  v-model="val" value="val" ref="searchInput">
       </div>
       <div class="remarks">
         {{prompt}}
@@ -27,11 +26,10 @@ import Bus from 'common/js/bus'
 export default {
   data () {
     return {
-      title: '名称',
+      title: '微信',
       save: '保存',
-      prompt: '设置后，其他人将看到你的名称',
+      prompt: '设置后，其他人将看到你的微信号',
       decline: false,
-      //getUser: {},
       val: ''
     }
   },
@@ -45,27 +43,27 @@ export default {
     Bus
   },
   methods: {
-    getData () {
-        const getUser = JSON.parse(sessionStorage.getItem('getUser'));
-        this.val = getUser.nickname
-    },
     saveData () {
-        const getUser = JSON.parse(sessionStorage.getItem('getUser'));
-        const setMessage = JSON.parse(sessionStorage.getItem('setMessage'));
-        api.sendUserMessage({real_name: getUser.real_name,email: setMessage.email,qq: setMessage.qq,weixin: setMessage.weixin,nickname: this.val,uid: this.uid,token: this.token,unit_id: this.unitId}).then(resp => {
-          var resp = eval(resp)
-          if (resp.resp_code === SUCCESS_OK) {
-            this.$router.back()
-            getUser.nickname = this.val
-            sessionStorage.setItem("getUser",JSON.stringify(getUser))
-            Bus.$emit('msg')
-          }else{
-            console.log(2)
-          }
-        });
-    },
-    clear () {
-      this.val = ''
+        
+        let reg = /^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/;
+        if (this.val == '') {
+          alert("请输入您的微信号")
+        }else if(!reg.test(this.val)){
+          alert("微信格式不正确")
+        }else{
+          //const getUser = JSON.parse(sessionStorage.getItem('getUser'));
+          const setMessage = JSON.parse(sessionStorage.getItem('setMessage'));
+          api.sendUserMessage({weixin: this.val,qq: setMessage.qq,email: setMessage.email,real_name: setMessage.real_name,nickname: setMessage.nickname,uid: this.uid,token: this.token,unit_id: this.unitId}).then(resp => {   
+            var resp = eval(resp)
+            if (resp.resp_code === SUCCESS_OK) {
+              Bus.$emit('setWeChat',this.val)
+              this.$router.back()
+            }else{
+              console.log(2)
+            }
+          });
+        }
+
     }
   },
    
@@ -77,7 +75,7 @@ export default {
     ])
   },
   created(){
-     this.getData();
+   
   },
   watch: {
 
