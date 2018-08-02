@@ -15,7 +15,7 @@
 	   <el-row class="vm-userinfo-main  _effect _cover-content" :class="{'_effect--30':decline}">
 	     <el-col class="vm-userinfo-info" :span="24">
 	       <div class="vm-userinfo-bg">
-	            <div class="vm-userinfo-list vm-specific frame-1px">
+	            <div class="vm-userinfo-list vm-specific frame-1px" @click="modifyAvatar">
 	              <label>头像</label>
 	              <img :src="getMessage.portrait">
 	            </div>
@@ -102,6 +102,10 @@ export default {
     modifyWeChat () {
       var _this = this;
       _this.$router.push({path: '/mine/user-info/modify-weChat'})
+    },
+    modifyAvatar () {
+      var _this = this;
+      _this.$router.push({path: '/mine/user-info/modify-avatar'})
     },
     getData () {
       //this.nickname = this.getUserMessage.nickname

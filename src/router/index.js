@@ -28,6 +28,8 @@ const modifyQQ = resolve => require(['@/components/mine/user-info/modify-QQ'], r
 
 const modifyWeChat = resolve => require(['@/components/mine/user-info/modify-weChat'], resolve)
 
+const modifyAvatar = resolve => require(['@/components/mine/user-info/modify-avatar'], resolve)
+
 const Home = resolve => require(['@/components/home/home'], resolve)
 
 const model = resolve => require(['@/components/model/model'], resolve)
@@ -349,6 +351,13 @@ export default new Router({
                   {
                     path: 'modify-weChat',
                     component: modifyWeChat,
+                    meta: {
+                       index: 3
+                    }
+                  },
+                  {
+                    path: 'modify-avatar',
+                    component: modifyAvatar,
                     meta: {
                        index: 3
                     }
