@@ -10,10 +10,10 @@
         <scroll ref="scroll" class="vm-scroll">
           <div>
             <div class="avatar-show">
-              <img :src="val">
+              <img :src="picture">
             </div>
             <div class="avatar-btn">
-              <input accept="image/jpeg,image/x-png,image/gif" class="upload" type="file" @change="fileImage">
+              <input  class="upload" type="file" @change="fileImage">
               <button>从相册选一张</button>
             </div>
             <div class="avatar-btn">
@@ -40,7 +40,11 @@ export default {
       save: '保存',
       decline: false,
       //getUser: {},
-      val: ''
+      picture: '',
+      imgData: {
+        accept: 'image/gif, image/jpeg, image/png, image/jpg',
+      }
+
     }
   },
   components: {
@@ -51,38 +55,65 @@ export default {
   methods: {
     getData () {
         const getUser = JSON.parse(sessionStorage.getItem('getUser'));
-        this.val = getUser.portrait
+        this.picture = getUser.portrait 
     },
     fileImage (e) {
-      var that=this;
-        var file = e.target.files[0];
-        var imgSize=file.size/1024;
-        if(imgSize>200){
-            alert('请上传大小不要超过200KB的图片')
+        
+        let formData = new FormData();
+        let reader =new FileReader();
+        let fileVal = e.target.files[0];
+        let imgSize=fileVal.size/1024;
+        let type=fileVal.type;
+        
+        let config = {
+            headers:{'Content-Type':'multipart/form-data'}
+            
+        };
+        if(this.imgData.accept.indexOf(type) == -1){  
+            alert('请选择我们支持的图片格式！');  
+            return false;  
+        }  
+        if(imgSize>3145728){  
+            alert('请选择3M以内的图片！');  
+            return false;  
         }else{
-
-           // 图片的 base64 格式, 可以直接当成 img 的 src 属性值        
+           
            const getUser = JSON.parse(sessionStorage.getItem('getUser'));
            const setMessage = JSON.parse(sessionStorage.getItem('setMessage'));
+      
+           
+           console.log(fileVal)
+              
+           formData.append("file",fileVal);
+           formData.append("real_name",getUser.real_name);
+           formData.append("email",setMessage.email);
+           formData.append("qq",setMessage.qq);
+           formData.append("weixin",setMessage.weixin);
+           formData.append("nickname",getUser.nickname);
+           formData.append("uid",this.uid);
+           formData.append("token",this.token);
+           formData.append("unit_id",this.unitId);
+           formData.append("utype",this.utype)
 
-           console.log(getUser.real_name)
-           console.log(setMessage)
-           api.sendUserMessage({file: file,real_name: getUser.real_name,email: setMessage.email,qq: setMessage.qq,weixin: setMessage.weixin,nickname: this.val,uid: this.uid,token: this.token,unit_id: this.unitId}).then(resp => {
+
+           console.log(formData)
+
+           api.sendUserMessage(formData,config).then(resp => {
+            
               var resp = eval(resp)
+              console.log(resp)
               if (resp.resp_code === SUCCESS_OK) {
                 //this.$router.back()
-                this.val = file
+                   this.picture = resp.response.portrait
+                   console.log(resp.response)
                 //sessionStorage.setItem("getUser",JSON.stringify(getUser))
                 //Bus.$emit('msg')
               }else{
                 console.log(2)
               }
             });
-            
+          
         }
-    },
-    clear () {
-      this.val = ''
     }
   },
    
@@ -90,6 +121,7 @@ export default {
     ...mapGetters([
         'token',
         'uid',
+        'utype',
         'unitId',
     ])
   },

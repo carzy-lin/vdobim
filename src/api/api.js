@@ -29,9 +29,11 @@ axios.interceptors.response.use((res) =>{
   return Promise.reject(error);
 });
 
-export function fetch(url, params) {
+export function fetch(url, params,config) {
+    config = (config==null?{}:config);
+    
     return new Promise((resolve, reject) => {
-        axios.post(url, params)
+        axios.post(url, params,config)
             .then(response => {
                 resolve(response.data);
             }, err => {
@@ -84,8 +86,8 @@ export default {
   getUserMessage(params) {
     return fetch(`${base}/user/userMessage`, params)
   },
-  sendUserMessage(params) {
-    return fetch(`${base}/user/updateUser`, params)
+  sendUserMessage(params,config) {
+    return fetch(`${base}/user/updateUser`, params,config)
   }
 }
 
