@@ -80,11 +80,20 @@ export default {
   getMyProblem(params) {
     return fetch(`${base}/user/myQuestion`, params)
   },
+  getProblemMessage(params) {
+    return fetch(`${base}/question/questionList`, params)
+  },
+  getProblemList(params) {
+    return fetch(`${base}/question/questionList`, params)
+  },
   getMyMessage(params) {
     return fetch(`${base}/user/myMessage`, params)
   },
   getUserMessage(params) {
     return fetch(`${base}/user/userMessage`, params)
+  },
+  getPlanList(params) {
+    return fetch(`${base}/plan/planList`, params)
   },
   sendUserMessage(params,config) {
     return fetch(`${base}/user/updateUser`, params,config)

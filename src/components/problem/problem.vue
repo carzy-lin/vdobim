@@ -6,38 +6,88 @@
         </p>
     </vm-header>
     <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
+       <Scroll ref="scroll" class="vm-scroll" :data="problemList" :pullup="pullup"  @scrollToEnd="loadMore">
+         <div>
+            <list-three :listData="problemList" :loadeData="loadingEndData" :loadeImg="loadingImg"></list-three>
+         </div>
+       </Scroll>
+       <div v-show="!problemList.length" class="loading-container">
+          <loading></loading>
+       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import Loading from 'base/loading/loading'
+import {mapGetters,mapActions,mapMutations} from 'vuex'
 import VmHeader from 'base/header/header'
+import listThree from 'base/component-list/list-three'
+import Scroll from 'base/scroll/scroll'
+import api from '../../api/api'
+import {SUCCESS_OK} from '../../api/config'
 
 export default {
   data () {
     return {
-      decline: false
+      decline: false,
+      pullup: true,
+      loadingEndData: false,
+      loadingImg: false,
+      problemList: [],
+      page: 1
     }
   },
   components: {
-    VmHeader
+    VmHeader,
+    Scroll,
+    Loading,
+    listThree
   },
   methods: {
-
+    async getData() {
+        api.getProblemList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+          var resp = eval(resp)
+          if (resp.resp_code === SUCCESS_OK) {
+            this.problemList = resp.response.list
+            console.log(this.problemList)
+          }
+        });
+    },
+    async loadMore() {
+        if (this.loadingEndData) {
+          return 
+        }
+        this.loadingImg = true
+        this.page += 1;
+        let modreData = await api.getProblemList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+              var resp = eval(resp)
+              if (resp.resp_code === SUCCESS_OK) {
+                return  resp.response.list
+              }else {
+                return false
+              }
+        });
+        this.problemList  = [...this.problemList, ...modreData];
+        if(modreData.length < 9) {
+           return false
+        }
+        this.loadingImg = false
+        this.loadingEndData = true
+    }
   },
   computed: {
     ...mapGetters([
+        'token',
+        'unitId',
         'projectDetails'
-    ])
+    ]),
   },
   created(){
-      
+    this.getData();
   },
   watch: {
-    $route(to, from) {
-
-    }
+    '$route': 'getData'
   }
 }  
 </script>
@@ -45,5 +95,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "~common/css/variable"
+
+
 
 </style>

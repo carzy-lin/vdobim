@@ -478,6 +478,111 @@ a:hover { text-decoration: underline; }
 }
 /*modify userinfo*/
 
+
+/*component-list*/
+.component-list {
+  padding-bottom: .3rem;
+  .item {
+      position: relative;
+      display:-webkit-box;
+      display:-webkit-flex;
+      display:-moz-box;
+      display:-ms-flexbox;
+      display:flex;
+      padding: .15rem;
+      .item-left {
+        width: .72rem;
+        position: relative;
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 .72rem;
+           -moz-box-flex: 0;
+            -ms-flex: 0 0 .72rem;
+                flex: 0 0 .72rem;
+        margin-right: .15rem;
+        overflow: hidden;
+        img {
+          height: 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+        }
+      }
+      .item-right {
+        color: $color-6;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+           -moz-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+        overflow: hidden;
+        .item-name {
+          padding-bottom: .15rem;
+          color: #000;
+          font-size: $font-size-medium-x;
+        }
+        .item-author {
+          padding-bottom: .1rem;
+          .size {
+            padding-right: .15rem;
+          }
+        }
+        .item-time {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+             -moz-box-pack: justify;
+              -ms-flex-pack: justify;
+                  justify-content: space-between;
+        }
+      }
+  }
+}
+.more {
+  position: relative;
+  display: flex;
+  flex: 0 0 .2rem;
+  align-items: flex-end;
+  .more-icon {
+  }
+  .operating {
+    position: absolute;
+    right: 0;
+    top: .7rem;
+    z-index: 9;
+    ul {
+      border: 1px solid $color-c;
+      -moz-border-radius: .05rem;
+           border-radius: .05rem;
+      background: #fff;
+      li {
+        height: .4rem;
+        width: 1rem;
+        text-align: center;
+        line-height: .4rem;
+        color: $color-6;
+      }
+      .active {
+        background: $color-c;
+      }
+    }
+  }
+  .none-img {
+    top: .2rem;
+  }
+}
+/*component-list*/
+
+/*component-list-three*/
+
+/*component-list-three*/
+
+
 @media (min-width: 320px ) and (max-width: 360px){
 
   #app {
