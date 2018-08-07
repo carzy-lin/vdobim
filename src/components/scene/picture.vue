@@ -1,14 +1,9 @@
 <template>
-  <div class="model main-fill">
-    <vm-header>
-        <p class="_effect" slot='center' :class="{'_effect--50':decline}">
-          <span class="top-title__text _ellipsis" v-text='$route.query.name'></span>
-        </p>
-    </vm-header>
+
     <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
-       <Scroll ref="scroll" class="vm-scroll" :data="modelList" :pullup="pullup"  @scrollToEnd="loadMore">
+       <Scroll ref="scroll" class="vm-scroll" :data="pictureList" :pullup="pullup"  @scrollToEnd="loadMore">
          <div>
-            <list-one  :listData="modelList" :loadeData="loadingEndData" :loadeImg="loadingImg">
+            <list-one  :listData="pictureList" :loadeData="loadingEndData" :loadeImg="loadingImg">
               <template slot="modelImge" slot-scope="variable">
                 <div class="item-left">
                   <img v-lazy="variable.item.pic_url">
@@ -17,11 +12,11 @@
             </list-one>
          </div>
        </Scroll>
-       <div v-show="!modelList.length" class="loading-container">
+       <div v-show="!pictureList.length" class="loading-container">
           <loading></loading>
        </div>
     </div>
-  </div>
+    
 </template>
 
 <script>
@@ -40,7 +35,7 @@ export default {
       pullup: true,
       loadingEndData: false,
       loadingImg: false,
-      modelList: [],
+      pictureList: [],
       page: 1
     }
   },
@@ -52,11 +47,11 @@ export default {
   },
   methods: {
     async getData() {
-        api.getModelList({project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+        api.getPictureList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
           var resp = eval(resp)
           if (resp.resp_code === SUCCESS_OK) {
-            this.modelList = resp.response.list
-            console.log(this.modelList)
+            this.pictureList = resp.response.list
+            console.log(this.pictureList)
           }
         });
     },
@@ -66,7 +61,7 @@ export default {
         }
         this.loadingImg = true
         this.page += 1;
-        let modreData = await api.getModelList({project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+        let modreData = await api.getPictureList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
               var resp = eval(resp)
               if (resp.resp_code === SUCCESS_OK) {
                 return  resp.response.list
@@ -74,7 +69,7 @@ export default {
                 return false
               }
         });
-        this.modelList  = [...this.modelList, ...modreData];
+        this.pictureList  = [...this.pictureList, ...modreData];
         if(modreData.length < 9) {
            return false
         }
@@ -102,7 +97,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import "~common/css/variable"
-  
+@import "~common/css/variable";
+
 
 </style>

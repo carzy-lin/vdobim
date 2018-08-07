@@ -44,6 +44,12 @@ const document = resolve => require(['@/components/document/document'], resolve)
 
 const scene = resolve => require(['@/components/scene/scene'], resolve)
 
+const scenePicture = resolve => require(['@/components/scene/picture'], resolve)
+
+const video = resolve => require(['@/components/scene/video'], resolve)
+
+const device = resolve => require(['@/components/scene/device'], resolve)
+
 const setting = resolve => require(['@/components/setting/setting'], resolve)
 
 const briefing = resolve => require(['@/components/briefing/briefing'], resolve)
@@ -242,7 +248,33 @@ export default new Router({
                     component: scene,
                     meta: {
                       index: 3
-                    }
+                    },
+                    children: [
+                      {
+                         path: 'scenePicture',
+                         name: 'scenePicture',
+                         component: scenePicture,
+                         meta: {
+                            index: 3
+                         }
+                      },
+                      {
+                         path: 'video',
+                         name: 'video',
+                         component: video,
+                         meta: {
+                            index: 3
+                         }
+                      },
+                      {
+                         path: 'device',
+                         name: 'device',
+                         component: device,
+                         meta: {
+                            index: 3
+                         }
+                      }
+                    ]
                   },
                   {
                     path: 'setting',

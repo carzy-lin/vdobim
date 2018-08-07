@@ -36,8 +36,8 @@ export const projectMenu = [
     "img": "../../static/img/projectMenu/vm-home-6.png"
   },
   {
-    "title": "现场",
-    "url": "scene",
+    "title": "图片",
+    "url": "scenePicture",
     "id": "7",
     "img": "../../static/img/projectMenu/vm-home-7.png"
   },

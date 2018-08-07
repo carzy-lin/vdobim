@@ -1,7 +1,9 @@
 <template>
   <div class="header item-header _cover-top">
     <div class="top-back">
-      <span class="left icon return" @click="back()" v-text="returnName"></span>
+      <slot name="left">
+        <span class="left icon return" @click="back()" v-text="returnName"></span>
+      </slot>
     </div>
     <div class="top-right">
       <slot name="right">

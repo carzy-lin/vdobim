@@ -1,32 +1,34 @@
 <template>
   <div class="component-list-three">
-    <div class="item-list frame-1px frame-top-1px" v-for="(item,index) in listData">
+    <div class="item-list frame-1px" v-for="(item,index) in listData">
       <div class="click_details">
         <div class="item-name">
           <div class="item-time">
-            <img src="http://192.168.0.193/Uploads/1/portrait/2018-08-02/1533176771.png">
-            <span class="item-username">OO</span>
-            <span>2018-08-02 10:58</span>
+            <img :src="item.portrait">
+            <span class="item-username">{{item.nickname}}</span>
+            <span>{{item.add_time | formatDate}}</span>
           </div>
           <div class="item-state">
-            <span>正在处理</span>
+            <span v-if="item.status==0">正在处理</span>
+            <span v-if="item.status==1">处理完成</span>
+            <span v-if="item.status==2">主题关闭</span>
           </div>
         </div>
         <div class="item-title">
-          <h3 class="text-execeeded">ts</h3>
+          <h3 class="text-execeeded">{{item.question_name}}</h3>
         </div>
         <div class="item-content">
-          <p class="text-dh"></p>
+          <p class="text-execeeded-2">{{item.content}}</p>
         </div>
-        <div class="item-img">
-          <img src="http://192.168.0.193/Uploads/1/Picture/2018-06-06/B1528274448.jpg">
+        <div  v-if="index==0 && item.pictures.length>0" class="item-img" v-for="(data,index) in item.pictures" :key="index">
+          <img  :src="data.bigpic_url">
         </div>
       </div>
       <div class="item-operation">
         <div class="item-details">
-          <span>浏览：31</span>
-          <span>收藏：1</span>
-          <span>回复：1</span>
+          <span>浏览：{{item.brow_count}}</span>
+          <span>收藏：{{item.collect_count}}</span>
+          <span>回复：{{item.answer_count}}</span>
         </div>
         <div class="more more-position">
           <span class="icon more-icon icon-dot" @click.stop="more(index)">...</span>
@@ -147,11 +149,11 @@ export default {
              -moz-box-align: center;
               -ms-flex-align: center;
                   align-items: center;
-          border: 1px solid $color-green;
+          border: 1px solid $color-light-green;
           font-size: $font-size-small-s;
           -moz-border-radius: .05rem;
                border-radius: .05rem;
-          color: $color-green;
+          color: $color-light-green;
         }
         .color-9 {
           border: 1px solid $color-9;
@@ -198,6 +200,7 @@ export default {
       }
     }
     .item-title {
+      display: flex;
       padding-bottom: .15rem;
       h3 {
         font-size: $font-size-medium-x;

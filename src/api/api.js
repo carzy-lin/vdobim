@@ -95,6 +95,21 @@ export default {
   getPlanList(params) {
     return fetch(`${base}/plan/planList`, params)
   },
+  getDrawingList(params) {
+    return fetch(`${base}/drawing/drawingList`, params)
+  },
+  getDocumentList(params) {
+    return fetch(`${base}/document/documentList`, params)
+  },
+  getPictureList(params) {
+    return fetch(`${base}/picture/pictureList`, params)
+  },
+  getVideoList(params) {
+    return fetch(`${base}/video/videoList`, params)
+  },
+  getDeviceList(params) {
+    return fetch(`${base}/device/deviceList`, params)
+  },
   sendUserMessage(params,config) {
     return fetch(`${base}/user/updateUser`, params,config)
   }
