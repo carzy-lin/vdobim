@@ -13,7 +13,7 @@
     <div class="title top-title _effect" :class="{'_effect--50':decline}">
       <slot name="center">
         <p>
-          <span v-text="title"></span>
+          <span class="text-execeeded" v-text="title"></span>
         </p>
       </slot>
     </div>

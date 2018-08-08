@@ -1,11 +1,11 @@
 <template>
   <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
-     <Scroll ref="scroll" class="vm-scroll" :data="agreementList" :pullup="pullup"  @scrollToEnd="loadMore">
+     <Scroll ref="scroll" class="vm-scroll" :data="payplanList" :pullup="pullup"  @scrollToEnd="loadMore">
        <div>
-          <list-two :listData="agreementList" :loadeData="loadingEndData" :loadeImg="loadingImg"></list-two>
+          <list-two :listData="payplanList" :loadeData="loadingEndData" :loadeImg="loadingImg"></list-two>
        </div>
      </Scroll>
-     <div v-show="!agreementList.length" class="loading-container">
+     <div v-show="!payplanList.length" class="loading-container">
         <loading></loading>
      </div>
   </div>
@@ -28,7 +28,7 @@ export default {
       cover: "cover-right",
       loadingEndData: false,
       loadingImg: false,
-      agreementList: [],
+      payplanList: [],
       page: 1
     }
   },
@@ -40,11 +40,11 @@ export default {
   },
   methods: {
     async getData() {
-        api.getAgreementList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+        api.getPayplanList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
           var resp = eval(resp)
           if (resp.resp_code === SUCCESS_OK) {
-            this.agreementList = resp.response.list
-            console.log(this.agreementList)
+            this.payplanList = resp.response.list
+            console.log(this.payplanList)
           }
         });
     },
@@ -54,7 +54,7 @@ export default {
         }
         this.loadingImg = true
         this.page += 1;
-        let modreData = await api.getAgreementList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+        let modreData = await api.getPayplanList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
               var resp = eval(resp)
               if (resp.resp_code === SUCCESS_OK) {
                 return  resp.response.list
@@ -62,7 +62,7 @@ export default {
                 return false
               }
         });
-        this.agreementList  = [...this.agreementList, ...modreData];
+        this.payplanList  = [...this.payplanList, ...modreData];
         if(modreData.length < 9) {
            return false
         }

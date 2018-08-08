@@ -2,7 +2,7 @@
     <div class="home main">
       <vm-header>
         <p class="_effect" slot='center' :class="{'_effect--50':decline}">
-          <span class="top-title__text _ellipsis" v-text='projectDetails.project_name'></span>
+          <span class="top-title__text _ellipsis text-execeeded" v-text='projectDetails.project_name'></span>
         </p>
       </vm-header>
       <div class="main-44 _effect _cover-content" :class="{'_effect--30':decline}">
@@ -127,7 +127,8 @@ export default {
           pages[page].push(item)
         })
         return pages
-    }
+    },
+    
   },
   created(){
     this.getData();
@@ -136,6 +137,15 @@ export default {
     '$route': 'getData',
     $route(to, from, next) {
         //如果to的索引值为0，不添加任何动画；如果to索引大于from索引,判断为前进状态,反之则为后退状态
+        if(to.name == 'scenePicture') {
+           to.query.name = '照片'
+        }
+        if(to.name == 'visaManagement') {
+           to.query.name = '签证管理'
+        }
+        if(to.name == 'pendApproval') {
+           to.query.name = '待我审批'
+        }
         if(to.meta.index > 1){
             if( to.meta.index < from.meta.index){
                 this.decline = false

@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     more (index) {
-      this.activeIndex = index;
+      this.activeIndex != index ? this.activeIndex = index : this.activeIndex = -1
     }
   },
   created(){
@@ -88,7 +88,7 @@ export default {
           if(this.activeIndex != -1){
             this.activeIndex = -1
           }
-        })
+    })
   },
   watch: {
   }

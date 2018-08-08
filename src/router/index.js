@@ -54,11 +54,25 @@ const setting = resolve => require(['@/components/setting/setting'], resolve)
 
 const briefing = resolve => require(['@/components/briefing/briefing'], resolve)
 
+const contractIndex = resolve => require(['@/components/contract/contract-index'], resolve)
+
 const contract = resolve => require(['@/components/contract/contract'], resolve)
 
-const visa = resolve => require(['@/components/visa/visa'], resolve)
+const paymentPlan = resolve => require(['@/components/contract/payment-plan'], resolve)
 
-const approval = resolve => require(['@/components/approval/approval'], resolve)
+const visaManagement = resolve => require(['@/components/visa/visa-management'], resolve)
+
+const visaSummary = resolve => require(['@/components/visa/visa-summary'], resolve)
+
+const visaIndex = resolve => require(['@/components/visa/visa-index'], resolve)
+
+const approvalIndex = resolve => require(['@/components/approval/approval-index'], resolve)
+
+const pendApproval = resolve => require(['@/components/approval/pend-approval'], resolve)
+
+const alreadyApproval = resolve => require(['@/components/approval/already-approval'], resolve)
+
+const initiateApproval = resolve => require(['@/components/approval/initiate-approval'], resolve)
 
 const AiFg = resolve => require(['@/components/AI/AI'], resolve)
 
@@ -293,28 +307,90 @@ export default new Router({
                     }
                   },
                   {
-                    path: 'contract',
-                    name: 'contract',
-                    component: contract,
+                    path: 'contractIndex',
+                    name: 'contractIndex',
+                    component: contractIndex,
                     meta: {
                       index: 3
-                    }
+                    },
+                    children: [
+                      {
+                        path: 'contract',
+                        name: 'contract',
+                        component: contract,
+                        meta: {
+                          index: 4
+                        }
+                      },
+                      {
+                        path: 'paymentPlan',
+                        name: 'paymentPlan',
+                        component: paymentPlan,
+                        meta: {
+                          index: 4
+                        }
+                      }
+                    ]
                   },
                   {
-                    path: 'visa',
-                    name: 'visa',
-                    component: visa,
+                    path: 'visaIndex',
+                    name: 'visaIndex',
+                    component: visaIndex,
                     meta: {
                       index: 3
-                    }
+                    },
+                    children: [
+                      {
+                        path: 'visaManagement',
+                        name: 'visaManagement',
+                        component: visaManagement,
+                        meta: {
+                          index: 4
+                        },
+                      },
+                      {
+                        path: 'visaSummary',
+                        name: 'visaSummary',
+                        component: visaSummary,
+                        meta: {
+                          index: 4
+                        }
+                      }
+                    ]
                   },
                   {
-                    path: 'approval',
-                    name: 'approval',
-                    component: approval,
+                    path: 'approvalIndex',
+                    name: 'approvalIndex',
+                    component: approvalIndex,
                     meta: {
                       index: 3
-                    }
+                    },
+                    children: [
+                      {
+                        path: 'pendApproval',
+                        name: 'pendApproval',
+                        component: pendApproval,
+                        meta: {
+                          index: 4
+                        }
+                      },
+                      {
+                        path: 'alreadyApproval',
+                        name: 'alreadyApproval',
+                        component: alreadyApproval,
+                        meta: {
+                          index: 4
+                        }
+                      },
+                      {
+                        path: 'initiateApproval',
+                        name: 'initiateApproval',
+                        component: initiateApproval,
+                        meta: {
+                          index: 4
+                        }
+                      }
+                    ]
                   }
                 ]
               }

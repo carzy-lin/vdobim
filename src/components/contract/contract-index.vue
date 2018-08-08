@@ -5,7 +5,7 @@
         <span class="left icon return" @click="back()" v-text="returnName"></span>
       </div>
       <div slot='center' class="_effect" :class="{'_effect--50':decline}">
-        <menu-seletc :menuData="scece"></menu-seletc>
+        <menu-seletc :menuData="contract"></menu-seletc>
       </div>
     </vm-header>
     <transition :name="cover">
@@ -17,7 +17,7 @@
 <script>
 import VmHeader from 'base/header/header'
 import menuSeletc from 'base/menu-seletc/menu-seletc'
-import {scece} from 'assets/js/project-menu'
+import {contract} from 'assets/js/project-menu'
 
 export default {
   data () {
@@ -25,7 +25,7 @@ export default {
       cover: "cover-right",
       returnName: '返回',
       decline: false,
-      scece
+      contract
     }
   },
   components: {

@@ -3,7 +3,12 @@
     <div class="item frame-1px" v-for="(item,index) in listData">
       <div class="item-name">
         <span class="icon"></span>
-        <span class="name text-execeeded">{{item.title}}</span>
+        <span v-if="item.title" class="name text-execeeded">{{item.title}}</span>
+        <span v-if="item.agreement_name && !item.visa_name" class="name text-execeeded 11">{{item.agreement_name}}</span>
+        <span v-if="item.visa_name" class="name text-execeeded">{{item.visa_name}}</span>
+        <span v-if="item.approval_name" class="name text-execeeded">{{item.approval_name}}</span>
+        <span v-if="item.payplan_name" class="name text-execeeded">{{item.payplan_name}}</span>
+        <span v-if="item.summary_name" class="name text-execeeded">{{item.summary_name}}</span>
       </div>
       <div class="item-bottom">
         <div class="item-author">
@@ -65,7 +70,7 @@ export default {
   },
   methods: {
     more (index) {
-      this.activeIndex = index;
+      this.activeIndex != index ? this.activeIndex = index : this.activeIndex = -1
     }
   },
   created(){

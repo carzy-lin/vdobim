@@ -12,8 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-          //target: 'http://192.168.0.193/?s=/home',
-          target: 'http://www.vdobim.com/?s=/home',
+          target: 'http://192.168.0.193/?s=/home',
+          //target: 'http://www.vdobim.com/?s=/home',
           changeOrigin: true,
           pathRewrite: {
             '^/api': ''

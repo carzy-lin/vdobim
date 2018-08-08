@@ -1,20 +1,21 @@
 <template>
-  <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
-     <Scroll ref="scroll" class="vm-scroll" :data="agreementList" :pullup="pullup"  @scrollToEnd="loadMore">
-       <div>
-          <list-two :listData="agreementList" :loadeData="loadingEndData" :loadeImg="loadingImg"></list-two>
+
+    <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
+       <Scroll ref="scroll" class="vm-scroll" :data="alreadyApprovalList" :pullup="pullup"  @scrollToEnd="loadMore">
+         <div>
+            <list-two :listData="alreadyApprovalList" :loadeData="loadingEndData" :loadeImg="loadingImg"></list-two>
+         </div>
+       </Scroll>
+       <div v-show="!alreadyApprovalList.length" class="loading-container">
+          <loading></loading>
        </div>
-     </Scroll>
-     <div v-show="!agreementList.length" class="loading-container">
-        <loading></loading>
-     </div>
-  </div>
+    </div>
+
 </template>
 
 <script>
 import Loading from 'base/loading/loading'
 import {mapGetters,mapActions,mapMutations} from 'vuex'
-import VmHeader from 'base/header/header'
 import listTwo from 'base/component-list/list-two'
 import Scroll from 'base/scroll/scroll'
 import api from '../../api/api'
@@ -25,26 +26,23 @@ export default {
     return {
       decline: false,
       pullup: true,
-      cover: "cover-right",
       loadingEndData: false,
       loadingImg: false,
-      agreementList: [],
+      alreadyApprovalList: [],
       page: 1
     }
   },
   components: {
-    VmHeader,
     Scroll,
     Loading,
     listTwo
   },
   methods: {
     async getData() {
-        api.getAgreementList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+        api.getAlreadyApprovalList({utype: this.utype,uid: this.uid,unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
           var resp = eval(resp)
           if (resp.resp_code === SUCCESS_OK) {
-            this.agreementList = resp.response.list
-            console.log(this.agreementList)
+            this.alreadyApprovalList = resp.response.list
           }
         });
     },
@@ -54,7 +52,7 @@ export default {
         }
         this.loadingImg = true
         this.page += 1;
-        let modreData = await api.getAgreementList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+        let modreData = await api.getAlreadyApprovalList({utype: this.utype,uid: this.uid,unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
               var resp = eval(resp)
               if (resp.resp_code === SUCCESS_OK) {
                 return  resp.response.list
@@ -62,7 +60,7 @@ export default {
                 return false
               }
         });
-        this.agreementList  = [...this.agreementList, ...modreData];
+        this.alreadyApprovalList  = [...this.alreadyApprovalList, ...modreData];
         if(modreData.length < 9) {
            return false
         }
@@ -74,6 +72,8 @@ export default {
     ...mapGetters([
         'token',
         'unitId',
+        'uid',
+        'utype',
         'projectDetails'
     ]),
   },

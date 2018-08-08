@@ -1,14 +1,14 @@
 <template>
-  <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
-     <Scroll ref="scroll" class="vm-scroll" :data="agreementList" :pullup="pullup"  @scrollToEnd="loadMore">
-       <div>
-          <list-two :listData="agreementList" :loadeData="loadingEndData" :loadeImg="loadingImg"></list-two>
+    <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
+       <Scroll ref="scroll" class="vm-scroll" :data="visaList" :pullup="pullup"  @scrollToEnd="loadMore">
+         <div>
+            <list-two :listData="visaList" :loadeData="loadingEndData" :loadeImg="loadingImg"></list-two>
+         </div>
+       </Scroll>
+       <div v-show="!visaList.length" class="loading-container">
+          <loading></loading>
        </div>
-     </Scroll>
-     <div v-show="!agreementList.length" class="loading-container">
-        <loading></loading>
-     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -25,10 +25,9 @@ export default {
     return {
       decline: false,
       pullup: true,
-      cover: "cover-right",
       loadingEndData: false,
       loadingImg: false,
-      agreementList: [],
+      visaList: [],
       page: 1
     }
   },
@@ -40,11 +39,12 @@ export default {
   },
   methods: {
     async getData() {
-        api.getAgreementList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+        api.getVisaList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
           var resp = eval(resp)
+          console.log(resp)
           if (resp.resp_code === SUCCESS_OK) {
-            this.agreementList = resp.response.list
-            console.log(this.agreementList)
+            this.visaList = resp.response.list
+            console.log(this.visaList)
           }
         });
     },
@@ -54,7 +54,7 @@ export default {
         }
         this.loadingImg = true
         this.page += 1;
-        let modreData = await api.getAgreementList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
+        let modreData = await api.getVisaList({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,size: '8',page: this.page}).then(resp => {
               var resp = eval(resp)
               if (resp.resp_code === SUCCESS_OK) {
                 return  resp.response.list
@@ -62,7 +62,7 @@ export default {
                 return false
               }
         });
-        this.agreementList  = [...this.agreementList, ...modreData];
+        this.visaList  = [...this.visaList, ...modreData];
         if(modreData.length < 9) {
            return false
         }

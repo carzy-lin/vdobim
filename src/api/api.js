@@ -110,6 +110,27 @@ export default {
   getDeviceList(params) {
     return fetch(`${base}/device/deviceList`, params)
   },
+  getAgreementList(params) {
+    return fetch(`${base}/agreement/agreementList`, params)
+  },
+  getPayplanList(params) {
+    return fetch(`${base}/payplan/payplanList`, params)
+  },
+  getVisaList(params) {
+    return fetch(`${base}/change/changeList`, params)
+  },
+  getVisaSummaryList(params) {
+    return fetch(`${base}/change/changeSummaryList`, params)
+  },
+  getApprovalList(params) {
+    return fetch(`${base}/approval/waitMyApprovalList`, params)
+  },
+  getInitiateApprovalList(params) {
+    return fetch(`${base}/approval/myApprovalList`, params)
+  },
+  getAlreadyApprovalList(params) {
+    return fetch(`${base}/approval/myHasApprovalList`, params)
+  },
   sendUserMessage(params,config) {
     return fetch(`${base}/user/updateUser`, params,config)
   }

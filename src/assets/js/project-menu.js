@@ -36,7 +36,7 @@ export const projectMenu = [
     "img": "../../static/img/projectMenu/vm-home-6.png"
   },
   {
-    "title": "图片",
+    "title": "现场",
     "url": "scenePicture",
     "id": "7",
     "img": "../../static/img/projectMenu/vm-home-7.png"
@@ -61,13 +61,13 @@ export const projectMenu = [
   },
   {
     "title": "签证",
-    "url": "visa",
+    "url": "visaManagement",
     "id": "13",
     "img": "../../static/img/projectMenu/vm-home-9.png"
   },
   {
     "title": "审批",
-    "url": "approval",
+    "url": "pendApproval",
     "id": "15",
     "img": "../../static/img/projectMenu/vm-home-9.png"
   }
@@ -121,5 +121,58 @@ export const overviewMenu = [
   {
     "title": "效果图",
     "url": "picture"
+  }
+]
+
+
+export const scece = [
+  {
+    "title": "照片",
+    "url": "scenePicture"
+  },
+  {
+    "title": "视频",
+    "url": "video"
+  },
+  {
+    "title": "监控",
+    "url": "device"
+  }
+]
+
+export const contract = [
+  {
+    "title": "合同",
+    "url": "contract"
+  },
+  {
+    "title": "付款计划",
+    "url": "paymentPlan"
+  }
+]
+
+export const visa = [
+  {
+    "title": "签证管理",
+    "url": "visaManagement"
+  },
+  {
+    "title": "签证汇总",
+    "url": "visaSummary"
+  }
+]
+
+export const approval = [
+  {
+    "title": "待我审批",
+    "url": "pendApproval"
+  },
+  {
+    "title": "我已审批",
+    "url": "alreadyApproval"
+  },
+  {
+    "title": "我发起的",
+    "url": "initiateApproval"
   }
 ]
