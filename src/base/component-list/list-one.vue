@@ -29,28 +29,43 @@
           <div id="toggle" class="operating" v-show="activeIndex===index">
             <ul>
               <li class="click_openModel">查看</li>
-              <li class="click_collect">收藏</li>
-              <li class="click_share">分享</li>
-              <li class="click_edit">编辑</li>
+              <li @click="collect(item)" class="click_collect">收藏</li>
+              <li @click="shareLog = true" class="click_share">分享</li>
+              <li @click="edit(item,index)" class="click_edit">编辑</li>
               <li class="click_delete">删除</li>
             </ul>
           </div>
         </div>
       </div>
-
+      <el-dialog
+        title="分享"
+        :visible.sync="shareLog"
+        width="80%"
+        append-to-body
+        center>
+        <div class="share-box">
+          <a>微信</a>
+          <a>qq</a>
+        </div>
+        <span slot="footer" class="dialog-footer"></span>
+      </el-dialog>
     <loading-end :loadingEndData="loadeData" :loadingImg="loadeImg"></loading-end>
   </div>
+
 </template>
 
 <script>
 import loadingEnd from 'base/loading-end/loading-end'
 import Scroll from 'base/scroll/scroll'
 import {formatDate} from 'common/js/timestamps';
+import api from '../../api/api'
+import {SUCCESS_OK} from '../../api/config'
+import Bus from 'common/js/bus'
 
 export default {
   props: {
     listData: {
-      type: Array,
+
     },
     loadeData: {
       type: Boolean
@@ -67,6 +82,7 @@ export default {
     return {
       decline: false,
       activeIndex: -1,
+      shareLog: false,
       loadingEndData: false,
       loadingImg: false,
     }
@@ -80,11 +96,19 @@ export default {
   methods: {
     more (index) {
       this.activeIndex != index ? this.activeIndex = index : this.activeIndex = -1
+    },
+    collect (item) {
+      this.$emit('collect',item)
+    },
+    edit (item,index) {
+      //console.log(99,this.listData)
+      //console.log(33,item)
+      this.$emit('edit',item,index)
     }
   },
   created(){
     let body = document.querySelector('body')
-        body.addEventListener('click',(e)=>{        
+    body.addEventListener('click',(e)=>{        
           if(this.activeIndex != -1){
             this.activeIndex = -1
           }
@@ -99,5 +123,13 @@ export default {
 <style lang="scss" scoped>
 @import "~common/css/variable";
 
+.share-box {
+  display: flex;
+  justify-content: center;
+  a {
+    display: inline-block;
+    padding: 0 .1rem;
+  }
+}
 
 </style>

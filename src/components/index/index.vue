@@ -9,7 +9,7 @@
       <scroll ref="scroll" class="project-main-box" :pullup="pullup"  @scrollToEnd="loadMore" :data="projectList">
         <div>
          <div class="project-list">
-           <div v-for="item in projectList" class="project-item frame-1px" @click="listItem(item)">
+           <div v-for="(item,index) in projectList" :key="index" class="project-item frame-1px" @click="listItem(item)">
              <div class="project-item-left text-execeeded">
                <h3>{{item.project_name}}</h3>
                <div class="project-time">
@@ -47,6 +47,7 @@ import {mapGetters,mapActions,mapMutations} from 'vuex'
 import tab from 'base/tab/tab'
 import api from '../../api/api'
 import {SUCCESS_OK} from '../../api/config'
+import Bus from 'common/js/bus'
 
 export default {
   data () {
@@ -125,6 +126,9 @@ export default {
   },
   created(){
     this.getData();
+    Bus.$on('getName', (name) => {
+      this.getData();
+    })
   },
   watch: {
     $route(to, from) {

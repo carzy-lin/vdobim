@@ -77,6 +77,16 @@ export default {
   getModelList(params) {
     return fetch(`${base}/module/moduleList`, params)
   },
+  getUpdateMould(params) {
+    return fetch(`${base}/module/updateModule`, params)
+  },
+  getCollectModule(params) {
+    return fetch(`${base}/module/collectModule`, params)
+  },
+  getCancelCollect(params) {
+    console.log(params)
+    return fetch(`${base}/user/cancelCollect`, params)
+  },
   getMyProblem(params) {
     return fetch(`${base}/user/myQuestion`, params)
   },
@@ -130,6 +140,15 @@ export default {
   },
   getAlreadyApprovalList(params) {
     return fetch(`${base}/approval/myHasApprovalList`, params)
+  },
+  getProjectMessage(params) {
+    return fetch(`${base}/project/projectMessage`, params)
+  },
+  getCollection(params) {
+    return fetch(`${base}/user/getCollect`, params)
+  },
+  sendProjectMessage(params) {
+    return fetch(`${base}/project/updateProject`, params)
   },
   sendUserMessage(params,config) {
     return fetch(`${base}/user/updateUser`, params,config)

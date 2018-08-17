@@ -2,7 +2,7 @@
     <div class="home main">
       <vm-header>
         <p class="_effect" slot='center' :class="{'_effect--50':decline}">
-          <span class="top-title__text _ellipsis text-execeeded" v-text='projectDetails.project_name'></span>
+          <span class="top-title__text _ellipsis text-execeeded" v-text='projectName'></span>
         </p>
       </vm-header>
       <div class="main-44 _effect _cover-content" :class="{'_effect--30':decline}">
@@ -66,6 +66,7 @@ import {SUCCESS_OK} from '../../api/config'
 import {MyMenu,projectMenu} from 'assets/js/project-menu'
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import 'swiper/dist/css/swiper.css';
+import Bus from 'common/js/bus'
 
 export default {
   data () {
@@ -73,6 +74,7 @@ export default {
        AIlist: [],
        MyMenu,
        projectMenu,
+       projectName: '',
        name,
        decline: false,
        cover: "cover-right",
@@ -132,6 +134,10 @@ export default {
   },
   created(){
     this.getData();
+    this.projectName =  this.projectDetails.project_name
+    Bus.$on('getName', (name) => {
+      this.projectName = name
+    })
   },
   watch: {
     '$route': 'getData',

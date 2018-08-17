@@ -8,6 +8,7 @@ import axios from 'axios'
 import VueLazyload from 'vue-lazyload'
 import ElementUI from 'element-ui' 
 import 'element-ui/lib/theme-chalk/index.css'
+import 'vue-social-share/dist/client.css'
 
 
 import 'static/css/reset.css'

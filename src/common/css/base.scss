@@ -235,7 +235,18 @@ a:hover { text-decoration: underline; }
 /*动画跳转*/
 
 
-
+.main-fixed {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  overflow: hidden;
+  transition: .3.5s all ease-in-out;
+  opacity: 1;
+}
 
 
 .main {

@@ -22,7 +22,7 @@
           <router-link class="vm-item-list frame-1px" v-for="(item,index) in menu" :key="index" :to="item.url">
               <div class="vm-item-name">
                 <span class="vm-item-icon" :class="item.icon"></span>
-              <span>{{item.title}}</span>
+                <span>{{item.title}}</span>
             </div>
             <span class="icon-return-white vm-rotate"></span>
           </router-link>

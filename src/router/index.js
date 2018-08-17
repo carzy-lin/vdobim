@@ -12,6 +12,8 @@ const myProblem = resolve => require(['@/components/my-problem/my-problem'], res
 
 const news = resolve => require(['@/components/news/news'], resolve)
 
+const collection = resolve => require(['@/components/mine/collection'], resolve)
+
 const mine = resolve => require(['@/components/mine/mine'], resolve)
 
 const quit = resolve => require(['@/components/mine/quit/quit'], resolve)
@@ -420,6 +422,14 @@ export default new Router({
               index: 1
             },
             children: [
+              {
+                path: 'collection',
+                name: 'collection',
+                component: collection,
+                meta: {
+                  index: 1
+                }
+              },
               {
                 path: 'user-info',
                 name: 'user-info',
