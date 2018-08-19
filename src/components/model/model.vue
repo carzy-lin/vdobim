@@ -11,6 +11,7 @@
             <list-one 
               v-on:collect ="listenCollect"
               v-on:edit = "listenEdit"
+              v-on:deleteData = "listenDeleteData"
               :listData="modelList"
               :loadeData="loadingEndData"
               :loadeImg="loadingImg">
@@ -26,7 +27,11 @@
           <loading></loading>
        </div>
     </div>
-    <edit-list :editData="editData" v-if="editToggle" v-on:shutDown="listenShutDown" v-on:getEditData="listenGetEditData"></edit-list>
+    <edit-list :editData="editData" 
+               v-if="editToggle" 
+               v-on:shutDown="listenShutDown"
+               v-on:getEditData="listenGetEditData">
+    </edit-list>
   </div>
 </template>
 
@@ -72,7 +77,6 @@ export default {
           var resp = eval(resp)
           if (resp.resp_code === SUCCESS_OK) {
             this.modelList = resp.response.list
-            console.log(this.modelList)
           }
         });
     },
@@ -112,13 +116,11 @@ export default {
       });
     },
     listenEdit (data,index) {
-      //console.log(3,data)
-      //console.log(4,index)
       this.editData = data
       this.editToggle = true
       this.key = index
     },
-    getNowFormatDate () {
+    /*getNowFormatDate () {
         var date = new Date();
         var seperator1 = "-";
         var seperator2 = ":";
@@ -134,9 +136,8 @@ export default {
                 + " " + date.getHours() + seperator2 + date.getMinutes()
                 + seperator2 + date.getSeconds();
         return currentdate;
-    },
+    },*/
     listenGetEditData (editAll) {
-      console.log(789,editAll.name)
       api.getUpdateMould({intro: editAll.intro,mould_name: editAll.name,project_id: this.projectDetails.project_id,token: this.token,uid: this.uid,mould_id: this.editData.mould_id}).then(resp => {
           var resp = eval(resp)
           if (resp.resp_code === SUCCESS_OK) {
@@ -144,7 +145,9 @@ export default {
                 message: '编辑成功',
                 type: 'success'
              });
+            let timestamp = Math.round(new Date().getTime()/1000).toString();
             this.editData.mould_name = editAll.name
+            this.editData.update_time = timestamp
             this.editToggle = false
           }else{
              this.$message.error('编辑失败');
@@ -154,6 +157,22 @@ export default {
     },
     listenShutDown () {
       this.editToggle = false
+    },
+    listenDeleteData (item,index) {
+      api.getDeleteModule({unit_id: this.unitId,project_id: this.projectDetails.project_id,token: this.token,uid: this.uid,mould_id: item.mould_id}).then(resp => {
+          var resp = eval(resp)
+          console.log(resp)
+          if (resp.resp_code === SUCCESS_OK) {
+             this.$message({
+                message: '删除成功',
+                type: 'success'
+             });
+             this.modelList.splice(index,1);
+          }else{
+             this.$message.error('删除失败');
+          }
+      })
+      
     },
     initWxChat: function() {
       let url = window.localStorage.getItem("LocalUrl")||window.location.href;

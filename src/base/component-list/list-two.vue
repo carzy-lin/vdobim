@@ -20,10 +20,10 @@
           <div id="toggle" class="operating none-img" v-show="activeIndex===index">
             <ul>
               <li class="click_openModel">查看</li>
-              <li class="click_collect">收藏</li>
+              <li @click="collect(item)" class="click_collect">收藏</li>
               <li class="click_share">分享</li>
-              <li class="click_edit">编辑</li>
-              <li class="click_delete">删除</li>
+              <li @click="edit(item,index)" class="click_edit">编辑</li>
+              <li @click="deleteData(item,index)" class="click_delete">删除</li>
             </ul>
           </div>
         </div>
@@ -71,6 +71,15 @@ export default {
   methods: {
     more (index) {
       this.activeIndex != index ? this.activeIndex = index : this.activeIndex = -1
+    },
+    collect (item) {
+      this.$emit('collect',item)
+    },
+    edit (item,index) {
+      this.$emit('edit',item,index)
+    },
+    deleteData (item,index) {
+      this.$emit('deleteData',item,index)
     }
   },
   created(){

@@ -43,7 +43,6 @@ export default {
   methods: {
     back () {
      let router = this.$route.name
-     console.log(router)
      if(router == 'basic-information' || router == 'dynamic' || router == 'member' || router == 'rendering' || router == 'notice') {
         this.$router.push({
           path: '/index/${projectDetails.project_id}'

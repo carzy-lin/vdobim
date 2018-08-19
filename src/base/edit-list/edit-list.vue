@@ -8,14 +8,27 @@
         <span class="right icon" slot='right' @click="saveData" v-text="saveText"></span>
     </vm-header>
     <div class="main-44">
-      <div class="edit-item frame-1px">
-        <label>名称：</label>
-        <input type="text" v-model="editList.name">
-      </div>
-      <div class="edit-item">
-        <label>说明：</label>
-        <textarea v-model="editList.intro"></textarea>
-      </div>
+      
+        <div class="edit-item frame-1px">
+          <label>名称：</label>
+          <input type="text" v-model="editList.name">
+        </div>
+        <div v-if="selectToggle" class="edit-item frame-1px">
+          <label>类别：</label>
+          <el-select  v-model="value" placeholder="请选择">
+            <el-option
+              v-for="item in planType"
+              :key="item.value"
+              :label="item.type_name"
+              :value="item.type_id">
+              <span style="float: left">{{ item.type_name}}</span>
+            </el-option>
+          </el-select>
+        </div>
+        <div class="edit-item">
+          <label>说明：</label>
+          <textarea v-model="editList.intro"></textarea>
+        </div>
     </div>
   </div>
 
@@ -27,6 +40,9 @@ export default {
   props: {
     editData: {
       type: Object,
+    },
+    planType: {
+      type: Array
     }
   },
   components: {
@@ -35,21 +51,29 @@ export default {
   data () {
     return {
       decline: false,
-      title: '编辑模型',
+      title: '编辑',
       returnName: '返回',
       saveText: '保存',
+      selectToggle: false,
       editToggle: true,
       editList: {
         name: '',
-        intro: ''
-      }
+        intro: '',
+        type: ''
+      },
+      value: ''
     }
   },
   methods: {
     getData () {
-      console.log(1,this.editData.mould_name)
-      console.log(2,this.editData.intro)
-      console.log(this.editData)
+      if(this.editData.mould_name) {
+        this.editList.name = this.editData.mould_name
+      }
+      if(this.editData.title) {
+        this.selectToggle = true
+        this.editList.name = this.editData.title
+      }
+      this.editList.intro = this.editData.intro
     },
     back () {
       this.editToggle = false
@@ -60,8 +84,7 @@ export default {
     saveData () {
       this.editList.name = this.editList.name
       this.editList.intro = this.editList.intro
-      console.log(3,this.editList.name)
-      console.log(4,this.editList.intro)
+      this.editList.type = this.value
       this.$emit('getEditData',this.editList)
     }
   },
@@ -97,5 +120,7 @@ export default {
     border: 0;
   }
 }
+
+
 
 </style>

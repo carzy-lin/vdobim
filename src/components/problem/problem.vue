@@ -4,6 +4,10 @@
         <p class="_effect" slot='center' :class="{'_effect--50':decline}">
           <span class="top-title__text _ellipsis" v-text='$route.query.name'></span>
         </p>
+        <p slot='right'>
+          <span class="right icon add" @click="add()" v-text="addName"></span>
+          <span class="right icon search" v-text="searchName"></span>
+        </p>
     </vm-header>
     <div class="_effect _cover-content main-44" :class="{'_effect--30':decline}">
        <Scroll ref="scroll" class="vm-scroll" :data="problemList" :pullup="pullup"  @scrollToEnd="loadMore">
@@ -15,6 +19,7 @@
           <loading></loading>
        </div>
     </div>
+    <add-problem v-show="toggle" v-on:closeAdd = "listenClose"></add-problem>
   </div>
 </template>
 
@@ -25,6 +30,7 @@ import VmHeader from 'base/header/header'
 import listThree from 'base/component-list/list-three'
 import Scroll from 'base/scroll/scroll'
 import api from '../../api/api'
+import addProblem from './addProblem'
 import {SUCCESS_OK} from '../../api/config'
 
 export default {
@@ -34,7 +40,10 @@ export default {
       pullup: true,
       loadingEndData: false,
       loadingImg: false,
+      toggle: false,
       problemList: [],
+      searchName: '搜索',
+      addName: '添加',
       page: 1
     }
   },
@@ -42,6 +51,7 @@ export default {
     VmHeader,
     Scroll,
     Loading,
+    addProblem,
     listThree
   },
   methods: {
@@ -74,6 +84,12 @@ export default {
         }
         this.loadingImg = false
         this.loadingEndData = true
+    },
+    add () {
+      this.toggle = true
+    },
+    listenClose () {
+      this.toggle = false
     }
   },
   computed: {

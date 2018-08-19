@@ -32,7 +32,7 @@
               <li @click="collect(item)" class="click_collect">收藏</li>
               <li @click="shareLog = true" class="click_share">分享</li>
               <li @click="edit(item,index)" class="click_edit">编辑</li>
-              <li class="click_delete">删除</li>
+              <li @click="deleteData(item,index)" class="click_delete">删除</li>
             </ul>
           </div>
         </div>
@@ -104,6 +104,10 @@ export default {
       //console.log(99,this.listData)
       //console.log(33,item)
       this.$emit('edit',item,index)
+    },
+    deleteData (item,index) {
+      //this.items.splice(index,1);
+      this.$emit('deleteData',item,index)
     }
   },
   created(){

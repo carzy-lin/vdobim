@@ -83,6 +83,9 @@ export default {
   getCollectModule(params) {
     return fetch(`${base}/module/collectModule`, params)
   },
+  getDeleteModule(params) {
+    return fetch(`${base}/module/deleteModule`, params)
+  },
   getCancelCollect(params) {
     console.log(params)
     return fetch(`${base}/user/cancelCollect`, params)
@@ -125,6 +128,18 @@ export default {
   },
   getPayplanList(params) {
     return fetch(`${base}/payplan/payplanList`, params)
+  },
+  getCollectPlan(params) {
+    return fetch(`${base}/plan/collectPlan`, params)
+  },
+  getUpdatePlan(params) {
+    return fetch(`${base}/plan/updatePlan`, params)
+  },
+  getDeletePlan(params) {
+    return fetch(`${base}/plan/deletePlan`, params)
+  },
+  getPlanTypeList(params) {
+    return fetch(`${base}/plan/planTypeList`, params)
   },
   getVisaList(params) {
     return fetch(`${base}/change/changeList`, params)
